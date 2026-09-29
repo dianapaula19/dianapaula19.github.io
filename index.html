@@ -9,25 +9,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fbfaf7;
+      --bg: #f4f5f7;          /* silver-white */
       --surface: #ffffff;
-      --text: #1d1b22;
-      --muted: #5f5b68;
-      --line: #e7e3dc;
-      --accent: #6c3bd1;
-      --accent-soft: #efe8fd;
-      --tag: #f3f0ea;
+      --text: #1b1f24;
+      --muted: #5b6470;
+      --line: #d3d7dc;        /* silver */
+      --accent: #007ba7;      /* cerulean */
+      --accent-soft: #e1f1f8;
+      --tag: #e8eaed;         /* silver */
+      --on-accent: #ffffff;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #131218;
-        --surface: #1c1a23;
-        --text: #eeebf3;
-        --muted: #a6a1b2;
-        --line: #2e2b37;
-        --accent: #b392ff;
-        --accent-soft: #2a2140;
-        --tag: #26232f;
+        --bg: #121417;
+        --surface: #1a1d21;
+        --text: #eceff2;
+        --muted: #a3abb5;
+        --line: #33383f;
+        --accent: #4fb8e0;
+        --accent-soft: #0f3342;
+        --tag: #262a30;
+        --on-accent: #0b1a22;
       }
     }
     * { box-sizing: border-box; }
@@ -57,7 +59,7 @@
       font-weight: 500;
       background: var(--surface);
     }
-    .links a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .links a.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
     section { margin-top: 64px; }
     h2 {
       font-size: 0.8rem;
