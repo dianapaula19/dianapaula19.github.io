@@ -1,1 +1,231 @@
-Hello World
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diana Băcîrcea</title>
+  <meta name="description" content="Software engineer in Helsinki working on speech technology and full-stack projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fbfaf7;
+      --surface: #ffffff;
+      --text: #1d1b22;
+      --muted: #5f5b68;
+      --line: #e7e3dc;
+      --accent: #6c3bd1;
+      --accent-soft: #efe8fd;
+      --tag: #f3f0ea;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #131218;
+        --surface: #1c1a23;
+        --text: #eeebf3;
+        --muted: #a6a1b2;
+        --line: #2e2b37;
+        --accent: #b392ff;
+        --accent-soft: #2a2140;
+        --tag: #26232f;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.6 Inter, system-ui, sans-serif;
+    }
+    main { max-width: 920px; margin: 0 auto; padding: 72px 16px 48px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      line-height: 1.05;
+      margin: 0 0 16px;
+    }
+    .lead { font-size: 1.2rem; color: var(--muted); max-width: 640px; margin: 0; }
+    .lead strong { color: var(--text); font-weight: 600; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .links a {
+      padding: 8px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
+      font-weight: 500;
+      background: var(--surface);
+    }
+    .links a.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    section { margin-top: 64px; }
+    h2 {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 20px;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .grid.pairs { grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr)); }
+    .card.feature { grid-column: 1 / -1; }
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      object-position: top;
+    }
+    .card h3 { margin: 0; font-size: 1.05rem; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+    .tags span { background: var(--tag); border-radius: 6px; padding: 2px 8px; font-size: 0.78rem; color: var(--muted); }
+    .pill { align-self: flex-start; background: var(--accent-soft); color: var(--accent); border-radius: 6px; padding: 2px 8px; font-size: 0.75rem; font-weight: 600; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .two { grid-template-columns: 1fr; } main { padding-top: 48px; } }
+    ul.plain { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+    ul.plain li { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; }
+    ul.plain li span { display: block; color: var(--muted); font-size: 0.92rem; }
+    footer { margin-top: 72px; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); padding-top: 20px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Hi, I'm Diana.</h1>
+    <p class="lead">
+      <strong>Software engineer at F-Secure</strong> in Helsinki, doing my master's thesis at
+      <strong>Aalto University</strong> on speech technology: what a voice reveals about the
+      person behind it. I like building things end to end, from signal processing to the web app on top.
+    </p>
+    <div class="links">
+      <a class="primary" href="https://github.com/dianapaula19">GitHub</a>
+      <a href="#speech">Speech &amp; ML</a>
+      <a href="#projects">Projects</a>
+      <a href="#open-source">Open source</a>
+    </div>
+  </header>
+
+  <section id="speech">
+    <h2>Speech &amp; machine learning</h2>
+    <div class="grid pairs">
+      <article class="card">
+        <span class="pill">Master's thesis</span>
+        <h3>Voice disorders in noisy rooms</h3>
+        <p>Classifying healthy voices, spasmodic dysphonia and laryngeal nerve palsy from the Saarbrücken
+          Voice Database, and measuring how noise and reverberation break it. Multi-condition training
+          recovers most of the lost accuracy.</p>
+        <div class="tags"><span>MFCC</span><span>NCA</span><span>scikit-learn</span></div>
+      </article>
+      <article class="card">
+        <h3>Intoxicated speech detection</h3>
+        <p>A CNN that tells from a few seconds of speech whether the speaker is drunk, evaluated on
+          speakers it has never heard (Alcohol Language Corpus).</p>
+        <div class="tags"><span>TensorFlow</span><span>librosa</span><span>UAR</span></div>
+      </article>
+      <article class="card">
+        <h3>LP speech codec</h3>
+        <p>A linear-prediction speech codec from scratch: quantized lattice filters and a regular-pulse
+          excitation compress speech from 128 to 9.4 kbit/s.</p>
+        <div class="tags"><span>NumPy</span><span>SciPy</span><span>DSP</span></div>
+      </article>
+      <article class="card">
+        <h3><a href="https://github.com/dianapaula19/ami-ai-project">Misogyny identification</a></h3>
+        <p>Classifying Italian tweets as misogynous or not; logistic regression on TF-IDF reaches 88%
+          accuracy in cross-validation.</p>
+        <div class="tags"><span>NLP</span><span>scikit-learn</span><span>NLTK</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Things I've built</h2>
+    <div class="grid">
+      <article class="card feature">
+        <div class="two">
+          <img src="assets/graduation.png"
+               alt="A student ranking elective courses by drag and drop" loading="lazy">
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <span class="pill">Bachelor's thesis</span>
+            <h3><a href="https://github.com/dianapaula19/graduation-project">Elective course selection</a></h3>
+            <p>Students rank their electives by drag and drop; when the session closes, seats are assigned
+              by grade. Admins import accounts from Excel and manage courses; teachers email their students.
+              Romanian and English interface.</p>
+            <div class="tags"><span>Django REST</span><span>React</span><span>TypeScript</span><span>Redux</span><span>Channels</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/wally.png"
+             alt="Where's Wally game screen" loading="lazy">
+        <h3><a href="https://github.com/dianapaula19/wheres-wally-game">Where's Wally? Social Distancing Edition</a></h3>
+        <p>Find Wally in a masked crowd before your three lives run out.</p>
+        <div class="tags"><span>C++</span><span>OpenGL</span></div>
+      </article>
+      <article class="card">
+        <img src="assets/squid-game.png"
+             alt="Squid Game web app registration" loading="lazy">
+        <h3><a href="https://github.com/dianapaula19/squid-game-web-app">Squid Game web app</a></h3>
+        <p>Sign up as a player or a guard; JWT access and refresh tokens.</p>
+        <div class="tags"><span>ASP.NET Core</span><span>EF Core</span><span>React</span></div>
+      </article>
+      <article class="card">
+        <img src="assets/tv-series.png"
+             alt="TV series tracker series list" loading="lazy">
+        <h3><a href="https://github.com/dianapaula19/tv-series-tracking-web-app">TV series tracker</a></h3>
+        <p>Track episodes, see monthly watch time, befriend users and challenge them to binge-watch.</p>
+        <div class="tags"><span>Java</span><span>Spring Boot</span><span>Vaadin</span></div>
+      </article>
+      <article class="card">
+        <img src="assets/crypto.png"
+             alt="Double encryption app" loading="lazy">
+        <h3><a href="https://github.com/dianapaula19/cryptography-and-security-projects">Cryptography apps</a></h3>
+        <p>Caesar + one-time pad double encryption, and a Blum Blum Shub random generator.</p>
+        <div class="tags"><span>Python</span><span>Kivy</span></div>
+      </article>
+      <article class="card">
+        <img src="assets/claw-machine.jpg"
+             alt="Claw machine electronics" loading="lazy">
+        <h3><a href="https://github.com/dianapaula19/introduction-to-robotics-course">Candy claw machine</a></h3>
+        <p>An arcade claw machine from Lego and plexiglass, steered wirelessly over nRF24L01 radios.</p>
+        <div class="tags"><span>Arduino</span><span>C++</span></div>
+      </article>
+      <article class="card">
+        <h3><a href="https://github.com/dianapaula19/airport-management-system">Airport management system</a></h3>
+        <p>Flights, airports, airlines, staff and shops, with reports on departures and employees.</p>
+        <div class="tags"><span>Java</span><span>Spring Boot</span><span>MySQL</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="open-source">
+    <h2>Open source</h2>
+    <ul class="plain">
+      <li><a href="https://github.com/commitglobal/votemonitor">VoteMonitor</a> · Commit Global
+        <span>Election observation platform: <a href="https://github.com/commitglobal/votemonitor/pull/1031">forgot-password screen</a>.</span></li>
+      <li><a href="https://github.com/imedslab/solt">solt</a> · imedslab
+        <span>Image augmentation library: CI, release and documentation workflows.</span></li>
+      <li><a href="https://github.com/code4romania/sprijin-de-urgenta-client">Sprijin de urgență</a> · Code for Romania
+        <span>Emergency help platform for people fleeing the war in Ukraine: <a href="https://github.com/code4romania/sprijin-de-urgenta-client/pull/66">sign-up user type component</a>.</span></li>
+      <li><a href="https://github.com/dianapaula19/famous-women-app">Famous Women</a> · Google Developer Challenge Scholarship
+        <span>Android app built by a team of scholars, <a href="https://medium.com/udacity/women-who-learn-women-who-collaborate-women-who-code-d3d2fbb0dcf0">featured on the Udacity blog</a>.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    BSc Computer Science, University of Bucharest · MSc (in progress), Aalto University ·
+    <a href="https://github.com/dianapaula19">github.com/dianapaula19</a>
+  </footer>
+</main>
+</body>
+</html>
