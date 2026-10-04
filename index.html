@@ -313,6 +313,16 @@
     html.a11y-contrast :focus-visible { outline: 4px solid #000000; outline-offset: 2px; }
     html.a11y-contrast .ctrls .close { background: #b0003a; }
 
+    /* lightbox */
+    .zoomable { cursor: zoom-in; }
+    html:not(.a11y-cursor) .zoomable { cursor: url("assets/cursor-hand.svg") 9 1, zoom-in; }
+    .lightbox { margin: auto; padding: 0; width: auto; max-width: min(1200px, calc(100vw - 24px)); color: var(--text); }
+    .lightbox::backdrop { background: rgba(253, 196, 222, 0.7); backdrop-filter: blur(2px); }
+    .lightbox-body { margin: 0; padding: 12px; background: #fff; text-align: center; }
+    .lightbox-body img { display: block; margin: 0 auto; max-width: 100%; max-height: calc(100vh - 150px); width: auto; height: auto; border: 1px solid var(--soft-line); }
+    .lightbox-body figcaption { padding: 8px 4px 0; font-size: 0.85rem; color: var(--muted); }
+    .lightbox-body figcaption:empty { display: none; }
+
     footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 8px; }
     @media (max-width: 760px) {
       .two { grid-template-columns: 1fr; }
@@ -588,6 +598,12 @@
     <video controls playsinline preload="none"></video>
     <div class="game-bar"><span>A recorded walkthrough of the original app running locally with sample data. It needs a Java server, so it can't run live on this static site.</span></div>
   </dialog>
+  <dialog class="win lightbox" id="lightbox" aria-labelledby="lightbox-title">
+    <div class="titlebar"><span><img class="emo" src="assets/ym/1.gif" alt="" width="18" height="18"><span id="lightbox-title">image.png</span></span>
+      <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" data-close aria-label="Close">×</button></span>
+    </div>
+    <figure class="lightbox-body"><img alt=""><figcaption></figcaption></figure>
+  </dialog>
 </main>
   <button type="button" class="a11y-btn" id="a11y-open" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6.3" r="1.7" fill="currentColor"/><path d="M6.5 9.2l5.5 1.2 5.5-1.2M12 10.4v4.2m0 0l-2.6 4.6M12 14.6l2.6 4.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Accessibility</button>
   <dialog class="win a11y-win" id="a11y" aria-labelledby="a11y-title">
@@ -716,6 +732,30 @@
     dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
     dlg.addEventListener('close', () => { v.pause(); v.removeAttribute('src'); v.load(); });
+  })();
+</script>
+<script>
+  // Lightbox: click (or Enter/Space on) a screenshot or photo to see it larger.
+  (function () {
+    const dlg = document.getElementById('lightbox');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const big = dlg.querySelector('.lightbox-body img'), cap = dlg.querySelector('.lightbox-body figcaption'), title = document.getElementById('lightbox-title');
+    function open(img) {
+      big.src = img.currentSrc || img.src; big.alt = img.alt || '';
+      cap.textContent = img.alt || '';
+      title.textContent = decodeURIComponent((img.getAttribute('src') || '').split('/').pop());
+      dlg.showModal();
+    }
+    document.querySelectorAll('.card > img, .card .two > img, .pin img, .avatar img').forEach((img) => {
+      img.classList.add('zoomable');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', 'Enlarge image' + (img.alt ? ': ' + img.alt : ''));
+      img.addEventListener('click', () => open(img));
+      img.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(img); } });
+    });
+    dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg || e.target === big) dlg.close(); });
   })();
 </script>
 <script>
