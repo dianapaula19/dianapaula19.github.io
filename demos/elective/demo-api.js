@@ -13,7 +13,7 @@
   'use strict';
 
   var HOST = 'demo.api.invalid';
-  var STORE = 'elective-demo-state-v1';
+  var STORE = 'elective-demo-state-v2';
   var DELAY = 250;
 
   /* ---- demo data -------------------------------------------------------- */
@@ -48,20 +48,24 @@
       { id: 2, title: 'Year 3 electives (semester 2)', domain: 'INFO', learning_mode: 'IF', degree: 'BACHELOR',
         study_program: 'INFO', year: 3, semester: 2, courses: [5, 6, 7] }
     ];
-    /* everyone except the first student has already ranked their electives */
+    /* every student has ranked their electives */
     var choices = {};
-    var picks = [null, [[2, 1, 3, 4], [5, 7, 6]], [[1, 2, 4, 3], [5, 6, 7]], [[2, 4, 1, 3], [7, 5, 6]],
+    var picks = [[[1, 3, 2, 4], [5, 6, 7]], [[2, 1, 3, 4], [5, 7, 6]], [[1, 2, 4, 3], [5, 6, 7]], [[2, 4, 1, 3], [7, 5, 6]],
                  [[2, 1, 3, 4], [5, 6, 7]], [[3, 2, 1, 4], [6, 5, 7]]];
     students.forEach(function (s, i) {
       if (picks[i]) { choices[s.email] = { 1: picks[i][0], 2: picks[i][1] }; }
     });
-    return {
-      session_open: 'TRUE',
+    var state = {
+      session_open: 'FALSE',
       admin: { email: 'admin@demo.example', first_name: 'Demo', last_name: 'Admin' },
       teachers: teachers, students: students, courses: courses, lists: lists, choices: choices,
       not_verified: ['new.student@demo.example', 'guest.lecturer@demo.example'],
       nextCourseId: 8, nextListId: 3
     };
+    /* Start after a finished round: the session is closed and seats are assigned,
+       so students and teachers see results. The admin can start a new session. */
+    assignSeats(state);
+    return state;
   }
 
   function load() {
