@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/demos/elective/static/css/main.89ca4f5e.css",
+    "main.js": "/demos/elective/static/js/main.fa922568.js",
+    "static/media/reset-password.svg": "/demos/elective/static/media/reset-password.94cf6d1e1ff3b4f1d3e6cb22a818c57d.svg",
+    "static/media/not-found.svg": "/demos/elective/static/media/not-found.55ce00548d9e0c5c2c8d038f5e752e91.svg",
+    "static/media/registration.svg": "/demos/elective/static/media/registration.c1e96174a2f9dc13ef1ba7c6fdcbeee4.svg",
+    "static/media/login.svg": "/demos/elective/static/media/login.9b3c5f190302ebf8c18cb831909f350e.svg",
+    "static/media/logo.svg": "/demos/elective/static/media/logo.bba87f2f1c16f7c511b852e55a749314.svg",
+    "static/media/recover-account.svg": "/demos/elective/static/media/recover-account.009a0a6988c7758388c554807c81b3a6.svg",
+    "static/media/angle-circle-arrow-down-focus.svg": "/demos/elective/static/media/angle-circle-arrow-down-focus.243d30e1bec3b8813421.svg",
+    "static/media/angle-circle-arrow-down.svg": "/demos/elective/static/media/angle-circle-arrow-down.5dc6a567ff4cdd02a096.svg",
+    "index.html": "/demos/elective/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.89ca4f5e.css",
+    "static/js/main.fa922568.js"
+  ]
+}

@@ -224,6 +224,9 @@
     .game { margin: auto; padding: 0; width: min(960px, calc(100vw - 24px)); color: var(--text); }
     .game::backdrop { background: rgba(253, 196, 222, 0.6); backdrop-filter: blur(2px); }
     .game-frame { aspect-ratio: 3 / 2; background: #8fd3d9; }
+    .game-frame.tall { aspect-ratio: auto; height: min(70vh, 640px); background: #fff; }
+    #elective { width: min(1180px, calc(100vw - 24px)); }
+    .game-bar b { color: var(--text); }
     .game-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
     .game-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--soft-line); }
     .game-bar .btn { font: inherit; flex: none; cursor: url("assets/cursor-hand.svg") 9 1, pointer; }
@@ -362,6 +365,7 @@
               by grade. Admins import accounts from Excel and manage courses; teachers email their students.
               Romanian and English interface. Supervised by Prof. Ioana Leuștean, then dean of the
               Faculty of Mathematics and Computer Science.</p>
+        <button type="button" class="btn play" data-target="elective" data-src="demos/elective/">▶ Try the live demo</button>
         <div class="tags"><span>Django REST</span><span>React</span><span>TypeScript</span><span>Redux</span><span>Channels</span></div>
       </article>
       <article class="card">
@@ -380,7 +384,7 @@
         <h3><a href="https://github.com/dianapaula19/wheres-wally-game" target="_blank" rel="noopener noreferrer">Where's Wally? Social Distancing Edition</a></h3>
         <p>Peak 2020 energy: everyone's masked up, standing a safe distance apart, and you still have to spot Wally
           in the crowd before your three lives run out.</p>
-        <button type="button" class="btn play" data-game="games/wally/index.html">▶ Play in browser</button>
+        <button type="button" class="btn play" data-target="game" data-src="games/wally/index.html">▶ Play in browser</button>
         <div class="tags"><span>C++</span><span>OpenGL</span><span>WebAssembly</span></div>
       </article>
       <article class="card">
@@ -469,14 +473,26 @@
       </div>
     </div>
   </dialog>
-  <dialog class="win game" id="game" aria-labelledby="game-title">
+  <dialog class="win game app-win" id="game" aria-labelledby="game-title">
     <div class="titlebar"><span id="game-title"><img class="emo" src="assets/ym/1.gif" alt="" width="18" height="18">wheres_wally.exe</span>
-      <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" id="game-close" aria-label="Close">×</button></span>
+      <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" data-close aria-label="Close">×</button></span>
     </div>
     <div class="game-frame"><iframe title="Where's Wally? Social Distancing Edition" loading="lazy"></iframe></div>
     <div class="game-bar">
       <span>Click Wally to find him. A wrong click costs a heart. The original game is compiled to WebAssembly from my 2021 C++ code, unchanged.</span>
-      <button type="button" class="btn" id="game-restart">↻ Restart</button>
+      <button type="button" class="btn" data-restart>↻ Restart</button>
+    </div>
+  </dialog>
+  <dialog class="win game app-win" id="elective" aria-labelledby="elective-title" data-reset="resetElectiveDemo">
+    <div class="titlebar"><span id="elective-title"><img class="emo" src="assets/ym/1.gif" alt="" width="18" height="18">elective_selection.app</span>
+      <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" data-close aria-label="Close">×</button></span>
+    </div>
+    <div class="game-frame tall"><iframe title="Elective course selection demo" loading="lazy"></iframe></div>
+    <div class="game-bar">
+      <span>Log in as <b>maria.popescu@demo.example</b> (student), <b>lovelace@demo.example</b> (teacher) or <b>admin@demo.example</b>, password <b>demo1234</b>.
+        Try ranking courses as Maria, then stop the session as the admin to run the seat assignment.
+        This is the original 2022 frontend; the Django backend is replaced by fictional demo data in your browser.</span>
+      <button type="button" class="btn" data-restart>↻ Reset demo</button>
     </div>
   </dialog>
 </main>
@@ -533,19 +549,26 @@
   })();
 </script>
 <script>
-  // Game window: the iframe only loads when opened, and is unloaded on close.
+  // App windows (game, demos): the iframe only loads when opened and is unloaded on close.
   (function () {
-    const dlg = document.getElementById('game');
-    if (!dlg || typeof dlg.showModal !== 'function') return;
-    const frame = dlg.querySelector('iframe');
-    let src = '';
-    document.querySelectorAll('.play').forEach((b) => b.addEventListener('click', () => {
-      src = b.dataset.game; frame.src = src; dlg.showModal();
+    document.querySelectorAll('.play').forEach((btn) => btn.addEventListener('click', () => {
+      const dlg = document.getElementById(btn.dataset.target);
+      if (!dlg || typeof dlg.showModal !== 'function') return;
+      dlg.dataset.src = btn.dataset.src;
+      dlg.querySelector('iframe').src = btn.dataset.src;
+      dlg.showModal();
     }));
-    document.getElementById('game-restart').addEventListener('click', () => { frame.src = 'about:blank'; setTimeout(() => { frame.src = src; }, 0); });
-    document.getElementById('game-close').addEventListener('click', () => dlg.close());
-    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
-    dlg.addEventListener('close', () => { frame.src = 'about:blank'; });
+    document.querySelectorAll('.app-win').forEach((dlg) => {
+      const frame = dlg.querySelector('iframe');
+      dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());
+      dlg.querySelector('[data-restart]').addEventListener('click', () => {
+        try { const reset = dlg.dataset.reset; if (reset && frame.contentWindow[reset]) frame.contentWindow[reset](); } catch (e) {}
+        frame.src = 'about:blank';
+        setTimeout(() => { frame.src = dlg.dataset.src; }, 0);
+      });
+      dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+      dlg.addEventListener('close', () => { frame.src = 'about:blank'; });
+    });
   })();
 </script>
 <script>
