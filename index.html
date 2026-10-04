@@ -16,6 +16,8 @@
       --line: #d98cb2;
       --soft-line: #f2c6da;
       --accent: #c13f78;
+      --link: #e8609f;
+      --link-hover: #a3286a;
       --accent-soft: #ffe3ef;
       --tag: #fff0f6;
       --title-a: #ffc2de;
@@ -35,8 +37,8 @@
       font: 15px/1.55 Tahoma, Verdana, "DejaVu Sans", "Segoe UI", sans-serif;
     }
     main { max-width: 940px; margin: 0 auto; padding: 48px 16px 40px; display: grid; gap: 28px; }
-    a { color: var(--accent); }
-    a:hover { color: #9b2c5f; }
+    a { color: var(--link); text-decoration-color: rgba(232, 96, 159, 0.45); text-underline-offset: 2px; transition: color .15s ease; }
+    a:hover { color: var(--link-hover); text-decoration-style: wavy; text-decoration-color: currentColor; }
 
     /* windows */
     .win {
@@ -210,11 +212,11 @@
     </div>
     <p class="lead">
       <strong>Software engineer at F-Secure</strong> in Helsinki, with a master's from
-      <strong>Aalto University</strong> (<a href="https://aaltodoc.aalto.fi/items/f7a211df-0bbe-4d45-93e8-dcb0a0ef06da">read my thesis</a>) and a soft spot for speech technology. I like building things end to end, from signal processing to the web app on top.
+      <strong>Aalto University</strong> (<a href="https://aaltodoc.aalto.fi/items/f7a211df-0bbe-4d45-93e8-dcb0a0ef06da" target="_blank" rel="noopener noreferrer">read my thesis</a>) and a soft spot for speech technology. I like building things end to end, from signal processing to the web app on top.
     </p>
     <div class="links">
-      <a class="primary" href="https://github.com/dianapaula19">GitHub</a>
-      <a href="https://www.linkedin.com/in/diana-bacircea">LinkedIn</a>
+      <a class="primary" href="https://github.com/dianapaula19" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/diana-bacircea" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
     <p class="note"><span class="noai">Built without AI</span>
       marks projects from before October 2022, written before AI coding assistants.</p>
@@ -242,15 +244,15 @@
     <div class="titlebar"><h2><img class="emo" src="assets/emo/happy.svg" alt="" width="16" height="16">Experience</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
     <ul class="plain">
-      <li><strong>Software Engineer</strong> · <a href="https://www.f-secure.com/">F-Secure</a>
+      <li><strong>Software Engineer</strong> · <a href="https://www.f-secure.com/" target="_blank" rel="noopener noreferrer">F-Secure</a>
         <span>🇫🇮 Helsinki, Finland · Mar 2026 – present</span></li>
-      <li><strong>Frontend Developer</strong> · <a href="https://www.cadentia.ai/">Cadentia Technologies</a>
+      <li><strong>Frontend Developer</strong> · <a href="https://www.cadentia.ai/" target="_blank" rel="noopener noreferrer">Cadentia Technologies</a>
         <span>🇫🇮 Helsinki, Finland · Oct 2024 – Feb 2026</span></li>
-      <li><strong>Software Engineer, Azure DevOps</strong> · <a href="https://www.microsoft.com/">Microsoft</a>
+      <li><strong>Software Engineer, Azure DevOps</strong> · <a href="https://www.microsoft.com/" target="_blank" rel="noopener noreferrer">Microsoft</a>
         <span>🇨🇿 Prague, Czech Republic · Oct 2022 – Sep 2024</span></li>
-      <li><strong>JavaScript Developer Intern</strong> · <a href="https://www.ibm.com/">IBM</a>
+      <li><strong>JavaScript Developer Intern</strong> · <a href="https://www.ibm.com/" target="_blank" rel="noopener noreferrer">IBM</a>
         <span>🇷🇴 Bucharest, Romania · Oct 2021 – Dec 2021</span></li>
-      <li><strong>Software Engineer Intern</strong> · <a href="https://www.adobe.com/">Adobe</a>
+      <li><strong>Software Engineer Intern</strong> · <a href="https://www.adobe.com/" target="_blank" rel="noopener noreferrer">Adobe</a>
         <span>🇷🇴 Bucharest, Romania · Jul 2021 – Sep 2021</span></li>
     </ul>
     </div>
@@ -262,27 +264,27 @@
     <div class="grid pairs">
       <article class="card">
         <span class="pill">MSc thesis, Aalto University</span>
-        <h3><a href="https://aaltodoc.aalto.fi/items/f7a211df-0bbe-4d45-93e8-dcb0a0ef06da">Multiclass classification of neurological disorders from speech in noisy and reverberant conditions</a></h3>
+        <h3><a href="https://aaltodoc.aalto.fi/items/f7a211df-0bbe-4d45-93e8-dcb0a0ef06da" target="_blank" rel="noopener noreferrer">Multiclass classification of neurological disorders from speech in noisy and reverberant conditions</a></h3>
         <p>Tells healthy voices apart from spasmodic dysphonia and recurrent laryngeal nerve palsy (Saarbrücken Voice Database), and studies how the MFCC-based classifier degrades under noise and room reverberation, and how multi-condition training helps.</p>
         <div class="tags"><span>MFCC</span><span>NCA</span><span>scikit-learn</span></div>
       </article>
       <article class="card">
         <span class="pill">MSc, Aalto University</span>
-        <h3><a href="https://github.com/dianapaula19/intoxicated-speech-detection">Intoxicated speech detection</a></h3>
+        <h3><a href="https://github.com/dianapaula19/intoxicated-speech-detection" target="_blank" rel="noopener noreferrer">Intoxicated speech detection</a></h3>
         <p>A CNN that tells from a few seconds of speech whether the speaker is drunk, evaluated on
           speakers it has never heard (Alcohol Language Corpus).</p>
         <div class="tags"><span>TensorFlow</span><span>librosa</span><span>UAR</span></div>
       </article>
       <article class="card">
         <span class="pill">MSc, Aalto University</span>
-        <h3><a href="https://github.com/dianapaula19/speech-processing-project">LP speech codec</a></h3>
+        <h3><a href="https://github.com/dianapaula19/speech-processing-project" target="_blank" rel="noopener noreferrer">LP speech codec</a></h3>
         <p>A linear-prediction speech codec from scratch: quantized lattice filters and a regular-pulse
           excitation compress speech from 128 to 9.4 kbit/s.</p>
         <div class="tags"><span>NumPy</span><span>SciPy</span><span>DSP</span></div>
       </article>
       <article class="card">
         <div class="badges"><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
-        <h3><a href="https://github.com/dianapaula19/ami-ai-project">Misogyny identification</a></h3>
+        <h3><a href="https://github.com/dianapaula19/ami-ai-project" target="_blank" rel="noopener noreferrer">Misogyny identification</a></h3>
         <p>Classifying Italian tweets as misogynous or not; logistic regression on TF-IDF reaches 88%
           accuracy in cross-validation.</p>
         <div class="tags"><span>NLP</span><span>scikit-learn</span><span>NLTK</span></div>
@@ -302,7 +304,7 @@
                alt="A student ranking elective courses by drag and drop" loading="lazy">
           <div style="display:flex;flex-direction:column;gap:8px">
             <div class="badges"><span class="pill">BSc thesis, University of Bucharest</span><span class="noai">Built without AI</span></div>
-            <h3><a href="https://github.com/dianapaula19/graduation-project">Elective course selection</a></h3>
+            <h3><a href="https://github.com/dianapaula19/graduation-project" target="_blank" rel="noopener noreferrer">Elective course selection</a></h3>
             <p>Students rank their electives by drag and drop; when the session closes, seats are assigned
               by grade. Admins import accounts from Excel and manage courses; teachers email their students.
               Romanian and English interface. Supervised by Prof. Ioana Leuștean, then dean of the
@@ -314,28 +316,28 @@
       <article class="card">
         <img src="assets/wally.png"
              alt="Where's Wally game screen" loading="lazy">
-        <h3><a href="https://github.com/dianapaula19/wheres-wally-game">Where's Wally? Social Distancing Edition</a></h3>
+        <h3><a href="https://github.com/dianapaula19/wheres-wally-game" target="_blank" rel="noopener noreferrer">Where's Wally? Social Distancing Edition</a></h3>
         <p>Find Wally in a masked crowd before your three lives run out.</p>
         <div class="tags"><span>C++</span><span>OpenGL</span></div>
       </article>
       <article class="card">
         <img src="assets/tv-series.png"
              alt="TV series tracker series list" loading="lazy">
-        <h3><a href="https://github.com/dianapaula19/tv-series-tracking-web-app">TV series tracker</a></h3>
+        <h3><a href="https://github.com/dianapaula19/tv-series-tracking-web-app" target="_blank" rel="noopener noreferrer">TV series tracker</a></h3>
         <p>Track episodes, see monthly watch time, befriend users and challenge them to binge-watch.</p>
         <div class="tags"><span>Java</span><span>Spring Boot</span><span>Vaadin</span></div>
       </article>
       <article class="card">
         <img src="assets/claw-machine.jpg"
              alt="The claw machine: frame, wiring and Lego enclosure" loading="lazy">
-        <h3><a href="https://github.com/dianapaula19/introduction-to-robotics-course">Candy claw machine</a></h3>
+        <h3><a href="https://github.com/dianapaula19/introduction-to-robotics-course" target="_blank" rel="noopener noreferrer">Candy claw machine</a></h3>
         <p>An arcade claw machine from Lego and plexiglass, steered wirelessly over nRF24L01 radios.</p>
         <div class="tags"><span>Arduino</span><span>C++</span></div>
       </article>
       <article class="card">
         <img src="assets/airport.png"
              alt="Employees table and navigation menu in the airport management app" loading="lazy">
-        <h3><a href="https://github.com/dianapaula19/airport-management-system">Airport management system</a></h3>
+        <h3><a href="https://github.com/dianapaula19/airport-management-system" target="_blank" rel="noopener noreferrer">Airport management system</a></h3>
         <p>Flights, airports, airlines, staff and shops, with reports on departures and employees.</p>
         <div class="tags"><span>Java</span><span>Spring Boot</span><span>MySQL</span></div>
       </article>
@@ -350,15 +352,15 @@
       <article class="card">
         <img src="assets/ulisses.png" style="object-position:center" alt="Simulated drift of plastic pellets after the Toconao spill off Galicia">
         <span class="pill">MSc, Aalto University</span>
-        <h3><a href="https://github.com/dianapaula19/ulisses-2025-project">Operation N.U.R.D.L.E.S</a></h3>
+        <h3><a href="https://github.com/dianapaula19/ulisses-2025-project" target="_blank" rel="noopener noreferrer">Operation N.U.R.D.L.E.S</a></h3>
         <p>ULISSES 2025. Where do plastic pellets go after a spill at sea? Drift simulations with OpenDrift and Copernicus
-          currents, winds and sea ice, presented on a <a href="https://dianapaula19.github.io/ulisses-2025-project/">mission-style website</a>.</p>
+          currents, winds and sea ice, presented on a <a href="https://dianapaula19.github.io/ulisses-2025-project/" target="_blank" rel="noopener noreferrer">mission-style website</a>.</p>
         <div class="tags"><span>Python</span><span>OpenDrift</span><span>React</span><span>Tailwind</span></div>
       </article>
       <article class="card">
         <img src="assets/music-dna.jpg" alt="musicDNA start screen with the Connect with your Spotify account button" loading="lazy">
         <div class="badges"><span class="pill">ING {Dev}School</span><span class="noai">Built without AI</span></div>
-        <h3><a href="https://github.com/VonBiscuit/Spotify_ING">musicDNA</a></h3>
+        <h3><a href="https://github.com/VonBiscuit/Spotify_ING" target="_blank" rel="noopener noreferrer">musicDNA</a></h3>
         <p>Connect your Spotify account and see your saved music broken down by genre; pick a genre to see your
           own tracks in it next to recommended ones.
           A team of three; I built the frontend: the pages, login flow and client-side state. May 2022.</p>
@@ -367,7 +369,7 @@
       <article class="card">
         <img src="assets/anfmr.jpg" alt="Home page of anfmr.ro with the association's logo and About us section" loading="lazy">
         <div class="badges"><span class="pill">Volunteer project</span><span class="noai">Built without AI</span></div>
-        <h3><a href="https://anfmr.ro/">anfmr.ro</a></h3>
+        <h3><a href="https://anfmr.ro/" target="_blank" rel="noopener noreferrer">anfmr.ro</a></h3>
         <p>The website of the Rural Women National Association, a Romanian nonprofit I volunteered with
           for four years: projects, activities, gallery and news. I built it and designed the logo. 2020.</p>
         <div class="tags"><span>Gatsby</span><span>React</span><span>GraphQL</span></div>
@@ -375,15 +377,15 @@
       <article class="card">
         <iframe class="video" src="https://www.youtube-nocookie.com/embed/MsB5dNeHQ3c" title="Famous Women app demo" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <div class="badges"><span class="pill">Udacity scholarship</span><span class="noai">Built without AI</span></div>
-        <h3><a href="https://github.com/dianapaula19/famous-women-app">Famous Women</a></h3>
+        <h3><a href="https://github.com/dianapaula19/famous-women-app" target="_blank" rel="noopener noreferrer">Famous Women</a></h3>
         <p>An Android app about remarkable women from each team member's country, built by a team of
-          Google Developer Challenge scholars and <a href="https://medium.com/udacity/women-who-learn-women-who-collaborate-women-who-code-d3d2fbb0dcf0">featured on the Udacity blog</a>.</p>
+          Google Developer Challenge scholars and <a href="https://medium.com/udacity/women-who-learn-women-who-collaborate-women-who-code-d3d2fbb0dcf0" target="_blank" rel="noopener noreferrer">featured on the Udacity blog</a>.</p>
         <div class="tags"><span>Java</span><span>Android</span></div>
       </article>
       <article class="card">
         <img src="assets/zara.png" alt="Zara Fashion start screen and two quiz questions" loading="lazy">
         <div class="badges"><span class="pill">High school</span><span class="noai">Built without AI</span></div>
-        <h3><a href="https://github.com/dianapaula19/zara-fashion-app">Zara Fashion: what's your style?</a></h3>
+        <h3><a href="https://github.com/dianapaula19/zara-fashion-app" target="_blank" rel="noopener noreferrer">Zara Fashion: what's your style?</a></h3>
         <p>An Android style quiz: pick six clothing items and find out whether your style is bohemian,
           casual, chic or vintage. Made for my high-school Computer Science certification exam.</p>
         <div class="tags"><span>Java</span><span>Android</span></div>
@@ -396,12 +398,12 @@
     <div class="titlebar"><h2><img class="emo" src="assets/emo/blush.svg" alt="" width="16" height="16">Open source</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
     <ul class="plain">
-      <li><a href="https://github.com/commitglobal/votemonitor">VoteMonitor</a> · Commit Global
-        <span>Election observation platform: <a href="https://github.com/commitglobal/votemonitor/pull/1031">forgot-password screen</a>.</span></li>
-      <li><a href="https://github.com/imedslab/solt">solt</a> · imedslab
+      <li><a href="https://github.com/commitglobal/votemonitor" target="_blank" rel="noopener noreferrer">VoteMonitor</a> · Commit Global
+        <span>Election observation platform: <a href="https://github.com/commitglobal/votemonitor/pull/1031" target="_blank" rel="noopener noreferrer">forgot-password screen</a>.</span></li>
+      <li><a href="https://github.com/imedslab/solt" target="_blank" rel="noopener noreferrer">solt</a> · imedslab
         <span>Image augmentation library: CI, release and documentation workflows.</span></li>
-      <li><a href="https://github.com/code4romania/sprijin-de-urgenta-client">Sprijin de urgență</a> · Code for Romania <span class="noai">Built without AI</span>
-        <span>Emergency help platform for people fleeing the war in Ukraine: <a href="https://github.com/code4romania/sprijin-de-urgenta-client/pull/66">sign-up user type component</a>.</span></li>
+      <li><a href="https://github.com/code4romania/sprijin-de-urgenta-client" target="_blank" rel="noopener noreferrer">Sprijin de urgență</a> · Code for Romania <span class="noai">Built without AI</span>
+        <span>Emergency help platform for people fleeing the war in Ukraine: <a href="https://github.com/code4romania/sprijin-de-urgenta-client/pull/66" target="_blank" rel="noopener noreferrer">sign-up user type component</a>.</span></li>
     </ul>
     </div>
   </section>
@@ -409,8 +411,8 @@
 
   <footer>
     BSc Computers and Information Technology, University of Bucharest · MSc, Aalto University ·
-    <a href="https://github.com/dianapaula19">GitHub</a> ·
-    <a href="https://www.linkedin.com/in/diana-bacircea">LinkedIn</a>
+    <a href="https://github.com/dianapaula19" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+    <a href="https://www.linkedin.com/in/diana-bacircea" target="_blank" rel="noopener noreferrer">LinkedIn</a>
   </footer>
 </main>
 <script>
