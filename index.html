@@ -149,6 +149,13 @@
     ul.plain li::before { content: ""; position: absolute; left: 11px; top: 12px; width: 16px; height: 16px; background: url("assets/emo/happy.svg") no-repeat center / contain; image-rendering: pixelated; }
     ul.plain li span { display: block; color: var(--muted); font-size: 0.86rem; }
 
+    /* section panels (no window chrome) */
+    .panel { background: var(--win); border: 1px solid var(--line); border-radius: 7px; box-shadow: 3px 3px 0 rgba(193, 63, 120, 0.18); }
+    .js .panel { border-top-left-radius: 0; }
+    .panel > .win-body { padding: 20px; }
+    .section-title { margin: 20px 20px 0; font: bold 1.1rem/1.3 "Trebuchet MS", Tahoma, Verdana, sans-serif; color: var(--text); }
+    .js .section-title { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
     /* tabs */
     .panels { display: grid; gap: 28px; }
     .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding-left: 8px; }
@@ -227,7 +234,7 @@
       <div class="avatar"><img src="assets/profile.jpg" alt="Diana Băcîrcea" width="132" height="132"></div>
       <div>
         <h1>Hi, I'm <em>Diana</em>.</h1>
-        <p class="status">Online · Helsinki</p>
+        <p class="status">Online · probably debugging something</p>
       </div>
     </div>
     <p class="lead">
@@ -261,8 +268,8 @@
       <a href="#other">More projects</a>
       <a href="#open-source">Open source</a>
     </nav>
-  <section id="experience" class="win">
-    <div class="titlebar"><h2><img class="emo" src="assets/emo/happy.svg" alt="" width="16" height="16">Experience</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+  <section id="experience" class="panel">
+    <h2 class="section-title">Experience</h2>
     <div class="win-body">
     <ul class="plain">
       <li><strong>Software Engineer</strong> · <a href="https://www.f-secure.com/" target="_blank" rel="noopener noreferrer">F-Secure</a>
@@ -279,8 +286,8 @@
     </div>
   </section>
 
-  <section id="speech" class="win">
-    <div class="titlebar"><h2><img class="emo" src="assets/emo/wink.svg" alt="" width="16" height="16">Speech &amp; machine learning</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+  <section id="speech" class="panel">
+    <h2 class="section-title">Speech &amp; machine learning</h2>
     <div class="win-body">
     <div class="grid pairs">
       <article class="card">
@@ -314,8 +321,8 @@
     </div>
   </section>
 
-  <section id="projects" class="win">
-    <div class="titlebar"><h2><img class="emo" src="assets/emo/blush.svg" alt="" width="16" height="16">Things I've built</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+  <section id="projects" class="panel">
+    <h2 class="section-title">Things I've built</h2>
     <div class="win-body">
     <p style="margin:0 0 16px;color:var(--muted);font-size:0.88rem">BSc, University of Bucharest · all built before October 2022, without AI</p>
     <div class="grid">
@@ -366,8 +373,8 @@
     </div>
   </section>
 
-  <section id="other" class="win">
-    <div class="titlebar"><h2><img class="emo" src="assets/emo/happy.svg" alt="" width="16" height="16">Other projects</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+  <section id="other" class="panel">
+    <h2 class="section-title">Other projects</h2>
     <div class="win-body">
     <div class="grid pairs">
       <article class="card">
@@ -415,8 +422,8 @@
     </div>
   </section>
 
-  <section id="open-source" class="win">
-    <div class="titlebar"><h2><img class="emo" src="assets/emo/blush.svg" alt="" width="16" height="16">Open source</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+  <section id="open-source" class="panel">
+    <h2 class="section-title">Open source</h2>
     <div class="win-body">
     <ul class="plain">
       <li><a href="https://github.com/commitglobal/votemonitor" target="_blank" rel="noopener noreferrer">VoteMonitor</a> · Commit Global
