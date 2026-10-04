@@ -99,9 +99,6 @@
       content: ""; display: inline-block; width: 0.62em; height: 0.58em; margin-left: 0.18em;
       background: var(--heart) no-repeat center / contain; vertical-align: 0.05em;
     }
-    .status { margin: 4px 0 0; font-size: 0.85rem; color: var(--muted); }
-    .status::before { content: "●"; color: #3fbf5f; margin-right: 5px; }
-    .status.away::before { color: #f0a92e; }
     .lead { font-size: 1.02rem; color: var(--muted); margin: 0; }
     .lead strong { color: var(--text); }
     .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
@@ -117,7 +114,7 @@
     .note { margin: 14px 0 0; color: var(--muted); font-size: 0.82rem; }
 
 
-    /* status message window */
+    /* favourite quote */
     .bubble {
       position: relative; margin: 22px 0 0; padding: 16px 20px 14px; background: #fff;
       border: 1.5px solid var(--line); border-radius: 18px; box-shadow: 3px 3px 0 rgba(193, 63, 120, 0.15);
@@ -359,7 +356,6 @@
       <div class="avatar"><img src="assets/profile.jpg" alt="Diana Băcîrcea" width="132" height="132"></div>
       <div>
         <h1>Hi, I'm <em>Diana</em>.</h1>
-        <p class="status" id="status">Online · probably vibe coding something</p>
       </div>
     </div>
     <p class="lead">
@@ -682,21 +678,6 @@
     open.addEventListener('click', () => dlg.showModal());
     document.getElementById('surprise-close').addEventListener('click', () => dlg.close());
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
-  })();
-</script>
-<script>
-  // Status follows Helsinki working hours: 9:00-17:00 online, otherwise away.
-  (function () {
-    const el = document.getElementById('status');
-    if (!el) return;
-    function update() {
-      const hour = Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hourCycle: 'h23', timeZone: 'Europe/Helsinki' }).format(new Date()));
-      const working = hour >= 9 && hour < 17;
-      el.textContent = working ? 'Online · probably vibe coding something' : 'Away · probably rewatching Gilmore Girls';
-      el.classList.toggle('away', !working);
-    }
-    update();
-    setInterval(update, 60000);
   })();
 </script>
 <script>
