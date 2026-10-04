@@ -125,6 +125,8 @@
       width: 100%; border: 1px solid var(--soft-line); border-radius: 3px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top;
     }
     .card .video { background: #000; }
+    .ai { background: linear-gradient(180deg, #fff 0%, #ffe1ef 100%); color: var(--accent); border: 1px solid var(--line); border-radius: 3px; padding: 0 7px; font-size: 0.72rem; font-weight: bold; white-space: nowrap; }
+    .ai::before { content: "✦ "; color: #ee6aa7; }
     .yr { align-self: flex-start; background: #fff; color: var(--text); border: 1px solid var(--line); border-radius: 3px; padding: 0 7px; font-size: 0.72rem; font-weight: bold; }
     .sub { margin: 0 0 16px; color: var(--muted); font-size: 0.88rem; }
     .card h3 { margin: 0; font-size: 1rem; }
@@ -333,7 +335,7 @@
     <div class="grid">
       <article class="card">
         <img src="assets/ulisses.png" style="object-position:center" alt="Simulated drift of plastic pellets after the Toconao spill off Galicia">
-        <div class="badges"><span class="yr">2025</span><span class="pill">MSc, Aalto University</span></div>
+        <div class="badges"><span class="yr">2025</span><span class="pill">MSc, Aalto University</span><span class="ai">Built with AI</span></div>
         <h3><a href="https://github.com/dianapaula19/ulisses-2025-project" target="_blank" rel="noopener noreferrer">Operation N.U.R.D.L.E.S</a></h3>
         <p>ULISSES 2025. Where do plastic pellets go after a spill at sea? Drift simulations with OpenDrift and Copernicus
           currents, winds and sea ice, presented on a <a href="https://dianapaula19.github.io/ulisses-2025-project/" target="_blank" rel="noopener noreferrer">mission-style website</a>.</p>
