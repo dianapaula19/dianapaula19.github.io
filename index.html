@@ -58,7 +58,7 @@
       white-space: nowrap; overflow: hidden;
     }
     .titlebar h2 { margin: 0; font-size: inherit; font-weight: inherit; overflow: hidden; text-overflow: ellipsis; }
-    .emo { width: 16px; height: 16px; image-rendering: pixelated; vertical-align: -3px; margin-right: 6px; filter: drop-shadow(0 1px 0 rgba(120, 20, 70, 0.35)); }
+    .emo { width: auto; height: 18px; vertical-align: -4px; margin-right: 6px; filter: drop-shadow(0 1px 0 rgba(120, 20, 70, 0.35)); }
     .ctrls { display: flex; gap: 3px; flex: none; }
     .ctrls i {
       width: 17px; height: 15px; display: grid; place-items: center; font-style: normal; font-size: 11px; font-weight: bold; line-height: 1; color: #fff;
@@ -141,7 +141,7 @@
     ul.plain li { padding: 10px 14px 10px 34px; position: relative; border-bottom: 1px solid var(--soft-line); }
     ul.plain li:last-child { border-bottom: 0; }
     ul.plain li:nth-child(even) { background: #fff6fa; }
-    ul.plain li::before { content: ""; position: absolute; left: 11px; top: 12px; width: 16px; height: 16px; background: url("assets/emo/happy.svg") no-repeat center / contain; image-rendering: pixelated; }
+    ul.plain li::before { content: ""; position: absolute; left: 10px; top: 11px; width: 18px; height: 18px; background: url("assets/ym/1.gif") no-repeat center / contain; image-rendering: pixelated; }
     ul.plain li span { display: block; color: var(--muted); font-size: 0.86rem; }
 
     /* section panels (no window chrome) */
@@ -177,6 +177,7 @@
     .gallery[open] { animation: pop .18s ease-out; }
     @keyframes pop { from { transform: scale(.94); opacity: 0; } }
     .gallery .win-body { overflow: auto; max-height: calc(100vh - 48px - 28px); }
+    .emo.inline { filter: none; margin: 0 0 0 4px; }
     .gallery-intro { margin: 0 0 14px; color: var(--muted); }
     .gallery .win-body {
       background-color: #fff4f9;
@@ -228,7 +229,7 @@
 <body>
 <main>
   <header class="win profile">
-    <div class="titlebar"><span><img class="emo" src="assets/emo/happy.svg" alt="" width="16" height="16">Diana Băcîrcea</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+    <div class="titlebar"><span><img class="emo" src="assets/ym/1.gif" alt="" width="18" height="18">Diana Băcîrcea</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
     <div class="intro">
     <div class="hero">
@@ -250,7 +251,7 @@
     <p class="note"><span class="noai">Built without AI</span>
       marks projects from before October 2022, written before AI coding assistants.</p>
       <figure class="win quote">
-        <div class="titlebar"><span><img class="emo" src="assets/emo/blush.svg" alt="" width="16" height="16">Status message</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <div class="titlebar"><span><img class="emo" src="assets/ym/9.gif" alt="" width="18" height="18">Status message</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
         <div class="win-body">
         <p class="label">Current favourite quote</p>
         <blockquote>We are the daughters of the feminists who said, “You can be anything,” and we heard, “You have to be everything.”</blockquote>
@@ -442,11 +443,11 @@
     MSc, Aalto University · BSc, University of Bucharest
   </footer>
   <dialog class="win gallery" id="surprise" aria-labelledby="surprise-title">
-    <div class="titlebar"><span id="surprise-title"><img class="emo" src="assets/emo/sleepy.svg" alt="" width="16" height="16">fluffy_gallery</span>
+    <div class="titlebar"><span id="surprise-title"><img class="emo" src="assets/ym/28.gif" alt="" width="21" height="18">fluffy_gallery</span>
       <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" id="surprise-close" aria-label="Close">×</button></span>
     </div>
     <div class="win-body">
-      <p class="gallery-intro">Meet Fluffy: 16 years old, chief napper and my favourite colleague ♡</p>
+      <p class="gallery-intro">Meet Fluffy: 16 years old, chief napper and my favourite colleague <img class="emo inline" src="assets/ym/8.gif" alt="" width="18" height="18"></p>
       <div class="board">
         <figure class="pin"><img src="assets/fluffy-baby.jpg" alt="Fluffy as a tiny fluffy kitten on a red cushion" loading="lazy"><figcaption>baby Fluffy</figcaption></figure>
         <figure class="pin"><img src="assets/fluffy-eyes.jpg" alt="Fluffy looking up with bright blue eyes" loading="lazy"><figcaption>those eyes</figcaption></figure>
