@@ -119,12 +119,9 @@
 
     /* status message window */
     .bubble {
-      position: relative; margin: 26px 0 0; padding: 16px 20px 14px; background: #fff;
+      position: relative; margin: 22px 0 0; padding: 16px 20px 14px; background: #fff;
       border: 1.5px solid var(--line); border-radius: 18px; box-shadow: 3px 3px 0 rgba(193, 63, 120, 0.15);
     }
-    .bubble::before, .bubble::after { content: ""; position: absolute; left: 34px; width: 0; height: 0; border-style: solid; }
-    .bubble::before { top: -13px; border-width: 0 11px 13px 11px; border-color: transparent transparent var(--line) transparent; }
-    .bubble::after { top: -10px; left: 35.5px; border-width: 0 9.5px 11px 9.5px; border-color: transparent transparent #fff transparent; }
     .bubble .label { display: flex; align-items: center; gap: 2px; }
     .bubble .label .emo { filter: none; }
     .quote .label { font-size: 0.72rem; font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
@@ -139,7 +136,18 @@
       position: relative; background: #fff; border: 1px solid var(--line); border-radius: 8px;
       padding: 14px; display: flex; flex-direction: column; gap: 7px;
       box-shadow: 2px 2px 0 rgba(193, 63, 120, 0.15);
+      transition: transform .25s cubic-bezier(.2, .9, .3, 1.25), box-shadow .25s ease, border-color .25s ease;
     }
+    .card::after {
+      content: "✦"; position: absolute; top: -9px; right: -7px; font-size: 18px; line-height: 1; color: #ee6aa7;
+      opacity: 0; transform: scale(.3) rotate(-60deg); transition: opacity .2s ease, transform .3s cubic-bezier(.2, .9, .3, 1.5);
+      pointer-events: none; text-shadow: 0 0 4px #fff, 0 0 2px #fff;
+    }
+    .card:hover, .card:focus-within { transform: translateY(-5px); box-shadow: 4px 9px 0 rgba(193, 63, 120, 0.22); border-color: var(--accent); }
+    .card:hover::after, .card:focus-within::after { opacity: 1; transform: scale(1) rotate(0deg); }
+    .card img { transition: filter .25s ease; }
+    .card:hover img { filter: saturate(1.12) brightness(1.03); }
+    html.a11y-motion .card:hover, html.a11y-motion .card:focus-within { transform: none; }
     .card.feature { grid-column: 1 / -1; }
     .card img, .card .video {
       width: 100%; border: 1px solid var(--soft-line); border-radius: 3px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top;
