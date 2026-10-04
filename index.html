@@ -82,6 +82,7 @@
     }
     .status { margin: 4px 0 0; font-size: 0.85rem; color: var(--muted); }
     .status::before { content: "●"; color: #3fbf5f; margin-right: 5px; }
+    .status.away::before { color: #f0a92e; }
     .lead { font-size: 1.02rem; color: var(--muted); max-width: 620px; margin: 0; }
     .lead strong { color: var(--text); }
     .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
@@ -255,7 +256,7 @@
       <div class="avatar"><img src="assets/profile.jpg" alt="Diana Băcîrcea" width="132" height="132"></div>
       <div>
         <h1>Hi, I'm <em>Diana</em>.</h1>
-        <p class="status">Online · probably debugging something</p>
+        <p class="status" id="status">Online · probably debugging something</p>
       </div>
     </div>
     <p class="lead">
@@ -515,6 +516,21 @@
     open.addEventListener('click', () => dlg.showModal());
     document.getElementById('surprise-close').addEventListener('click', () => dlg.close());
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  })();
+</script>
+<script>
+  // Status follows Helsinki working hours: 9:00-17:00 online, otherwise away.
+  (function () {
+    const el = document.getElementById('status');
+    if (!el) return;
+    function update() {
+      const hour = Number(new Intl.DateTimeFormat('en-GB', { hour: 'numeric', hourCycle: 'h23', timeZone: 'Europe/Helsinki' }).format(new Date()));
+      const working = hour >= 9 && hour < 17;
+      el.textContent = working ? 'Online · probably debugging something' : 'Away · probably rewatching Gilmore Girls';
+      el.classList.toggle('away', !working);
+    }
+    update();
+    setInterval(update, 60000);
   })();
 </script>
 <script>
