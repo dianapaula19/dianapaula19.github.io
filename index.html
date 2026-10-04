@@ -183,8 +183,29 @@
     @keyframes pop { from { transform: scale(.94); opacity: 0; } }
     .gallery .win-body { overflow: auto; max-height: calc(100vh - 48px - 28px); }
     .gallery-intro { margin: 0 0 14px; color: var(--muted); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
-    .gallery-grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid var(--soft-line); border-radius: 4px; box-shadow: 2px 2px 0 rgba(193, 63, 120, 0.15); }
+    .gallery .win-body {
+      background-color: #fff4f9;
+      background-image: linear-gradient(rgba(232, 96, 159, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(232, 96, 159, 0.09) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .board { columns: 3 180px; column-gap: 18px; padding: 10px 4px 0; }
+    .pin {
+      --r: -2deg;
+      break-inside: avoid; position: relative; margin: 0 0 22px; padding: 8px 8px 6px; background: #fff;
+      border: 1px solid var(--soft-line); box-shadow: 2px 3px 0 rgba(193, 63, 120, 0.18);
+      transform: rotate(var(--r)); transition: transform .2s ease;
+    }
+    .pin:nth-child(3n+2) { --r: 1.6deg; }
+    .pin:nth-child(3n+3) { --r: -0.8deg; }
+    .pin:nth-child(4n+4) { --r: 2.4deg; }
+    .pin:hover { transform: rotate(0deg) scale(1.03); z-index: 1; }
+    .pin::before {
+      content: ""; position: absolute; top: -7px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff 0 2px, #ff8fc5 3px, #d63f86 100%); box-shadow: 1px 2px 0 rgba(110, 22, 64, 0.35);
+    }
+    .pin img { display: block; width: 100%; height: auto; }
+    .pin figcaption { padding: 6px 2px 0; font-size: 0.78rem; color: var(--muted); text-align: center; }
+    @media (prefers-reduced-motion: reduce) { .pin { transition: none; } }
     .ctrls .close {
       width: 17px; height: 15px; padding: 0; display: grid; place-items: center; font: bold 11px/1 Tahoma, Verdana, sans-serif; color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.85); border-radius: 3px; background: #e0447f; cursor: url("assets/cursor-hand.svg") 9 1, pointer;
@@ -448,8 +469,8 @@
     </div>
     <div class="win-body">
       <p class="gallery-intro">Meet Fluffy: 16 years old, chief napper and my favourite colleague ♡</p>
-      <div class="gallery-grid">
-        <img src="assets/fluffy.jpg" alt="Fluffy asleep with the tip of her tongue out" loading="lazy">
+      <div class="board">
+        <figure class="pin"><img src="assets/fluffy.jpg" alt="Fluffy asleep with the tip of her tongue out" loading="lazy"><figcaption>nap o'clock</figcaption></figure>
       </div>
     </div>
   </dialog>
