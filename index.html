@@ -53,6 +53,7 @@
       white-space: nowrap; overflow: hidden;
     }
     .titlebar h2 { margin: 0; font-size: inherit; font-weight: inherit; overflow: hidden; text-overflow: ellipsis; }
+    .emo { width: 16px; height: 16px; image-rendering: pixelated; vertical-align: -3px; margin-right: 6px; filter: drop-shadow(0 1px 0 rgba(120, 20, 70, 0.35)); }
     .ctrls { display: flex; gap: 3px; flex: none; }
     .ctrls i {
       width: 17px; height: 15px; display: grid; place-items: center; font-style: normal; font-size: 11px; font-weight: bold; line-height: 1; color: #fff;
@@ -62,8 +63,7 @@
     .win-body { padding: 18px 20px 20px; }
 
     /* profile window */
-    .profile .win-body { display: grid; grid-template-columns: 1fr auto; column-gap: 28px; align-items: start; }
-    .profile .win-body > * { grid-column: 1; }
+    .profile > .win-body { display: grid; grid-template-columns: 1fr auto; column-gap: 28px; align-items: start; }
     .hero { display: flex; align-items: center; gap: 20px; margin-bottom: 14px; }
     .avatar img {
       width: 112px; height: 112px; object-fit: cover; display: block; border-radius: 6px;
@@ -90,11 +90,14 @@
     .note { margin: 14px 0 0; color: var(--muted); font-size: 0.82rem; }
 
     /* photo window */
-    .profile .photo { grid-column: 2; grid-row: 1 / span 5; width: 210px; }
-    .photo img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+    .profile .intro { grid-column: 1; grid-row: 1; }
+    .profile .side { grid-column: 2; grid-row: 1; width: 210px; display: grid; gap: 16px; align-content: start; }
+    .photo > img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
     .photo figcaption { padding: 5px 8px; font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--soft-line); background: #fff; }
 
     /* status message window */
+    .profile .quote { margin-top: 22px; box-shadow: 2px 2px 0 rgba(193, 63, 120, 0.15); }
+    .profile .quote .win-body { padding: 14px 16px; }
     .quote .label { font-size: 0.72rem; font-weight: bold; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
     .quote blockquote { margin: 0; font: italic clamp(1.05rem, 2.4vw, 1.3rem)/1.5 Georgia, "Times New Roman", serif; }
     .quote figcaption { margin-top: 10px; color: var(--muted); font-weight: bold; font-size: 0.9rem; }
@@ -138,13 +141,30 @@
     ul.plain li { padding: 10px 14px 10px 34px; position: relative; border-bottom: 1px solid var(--soft-line); }
     ul.plain li:last-child { border-bottom: 0; }
     ul.plain li:nth-child(even) { background: #fff6fa; }
-    ul.plain li::before { content: "☺"; position: absolute; left: 12px; top: 9px; color: #e9a320; font-size: 1rem; }
+    ul.plain li::before { content: ""; position: absolute; left: 11px; top: 12px; width: 16px; height: 16px; background: url("assets/emo/happy.svg") no-repeat center / contain; image-rendering: pixelated; }
     ul.plain li span { display: block; color: var(--muted); font-size: 0.86rem; }
+
+    /* tabs */
+    .panels { display: grid; gap: 28px; }
+    .tabs { display: flex; flex-wrap: wrap; gap: 4px; padding-left: 8px; }
+    .tabs a {
+      padding: 6px 14px 5px; border: 1px solid var(--line); border-bottom: 0; border-radius: 7px 7px 0 0;
+      background: linear-gradient(180deg, #fff 0%, #ffe1ef 100%); color: var(--text); text-decoration: none; font-size: 0.86rem;
+    }
+    .tabs a:hover { background: linear-gradient(180deg, #fff 0%, #ffd2e7 100%); }
+    .js .panels { gap: 0; }
+    .js .tabs { position: relative; z-index: 1; margin-bottom: -1px; }
+    .js .tabs a.active { background: linear-gradient(180deg, var(--title-a), var(--title-b)); color: #fff; font-weight: bold; text-shadow: 0 1px 0 rgba(120, 20, 70, 0.4); border-color: #c4568a; }
+    .js .panels > section { display: none; }
+    .js .panels > section.active { display: block; }
+    .tabs { display: none; }
+    .js .tabs { display: flex; }
 
     footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 8px; }
     @media (max-width: 760px) {
-      .profile .win-body { grid-template-columns: 1fr; }
-      .profile .photo { grid-column: 1; grid-row: 6; justify-self: center; width: 180px; margin-top: 20px; }
+      .profile > .win-body { grid-template-columns: 1fr; }
+      .profile .side { grid-column: 1; grid-row: 2; width: 100%; max-width: 400px; justify-self: center; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+      .profile .side .photo > img { aspect-ratio: 1 / 1 !important; }
       .two { grid-template-columns: 1fr; }
       .hero { gap: 14px; }
       .avatar img { width: 88px; height: 88px; }
@@ -163,13 +183,21 @@
 <body>
 <main>
   <header class="win profile">
-    <div class="titlebar"><span>☺ Diana Băcîrcea</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+    <div class="titlebar"><span><img class="emo" src="assets/emo/happy.svg" alt="" width="16" height="16">Diana Băcîrcea</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
-    <figure class="win photo">
-      <div class="titlebar"><span>lisbon.jpg</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-      <img src="assets/lisbon.jpg" alt="Diana in front of the King José I statue in Praça do Comércio, Lisbon" loading="lazy">
-      <figcaption>Lisbon, Praça do Comércio ♡</figcaption>
-    </figure>
+    <div class="side">
+      <figure class="win photo">
+        <div class="titlebar"><span><img class="emo" src="assets/emo/wink.svg" alt="" width="16" height="16">lisbon.jpg</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <img src="assets/lisbon.jpg" alt="Diana in front of the King José I statue in Praça do Comércio, Lisbon" loading="lazy">
+        <figcaption>Lisbon, Praça do Comércio ♡</figcaption>
+      </figure>
+      <figure class="win photo">
+        <div class="titlebar"><span><img class="emo" src="assets/emo/sleepy.svg" alt="" width="16" height="16">fluffy.jpg</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <img src="assets/fluffy.jpg" alt="Fluffy, Diana's cat, asleep with the tip of her tongue out" loading="lazy" style="aspect-ratio:1/1">
+        <figcaption>Fluffy, 16, professional napper ♡</figcaption>
+      </figure>
+    </div>
+    <div class="intro">
     <div class="hero">
       <div class="avatar"><img src="assets/profile.jpg" alt="Diana Băcîrcea" width="132" height="132"></div>
       <div>
@@ -183,27 +211,32 @@
     </p>
     <div class="links">
       <a class="primary" href="https://github.com/dianapaula19">GitHub</a>
-      <a href="#experience">Experience</a>
-      <a href="#speech">Speech &amp; ML</a>
-      <a href="#projects">Projects</a>
-      <a href="#open-source">Open source</a>
+      <a href="https://www.linkedin.com/in/diana-bacircea">LinkedIn</a>
     </div>
     <p class="note"><span class="noai">Built without AI</span>
       marks projects from before October 2022, written before AI coding assistants.</p>
+      <figure class="win quote">
+        <div class="titlebar"><span><img class="emo" src="assets/emo/blush.svg" alt="" width="16" height="16">Status message</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+        <div class="win-body">
+        <p class="label">Current favourite quote</p>
+        <blockquote>We are the daughters of the feminists who said, “You can be anything,” and we heard, “You have to be everything.”</blockquote>
+        <figcaption>Courtney Martin</figcaption>
+        </div>
+      </figure>
+    </div>
     </div>
   </header>
 
-  <figure class="win quote">
-    <div class="titlebar"><span>Status message</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
-    <div class="win-body">
-    <p class="label">Current favourite quote</p>
-    <blockquote>We are the daughters of the feminists who said, “You can be anything,” and we heard, “You have to be everything.”</blockquote>
-    <figcaption>Courtney Martin</figcaption>
-    </div>
-  </figure>
-
+  <div class="panels">
+    <nav class="tabs" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#speech">Speech &amp; ML</a>
+      <a href="#projects">Projects</a>
+      <a href="#other">More projects</a>
+      <a href="#open-source">Open source</a>
+    </nav>
   <section id="experience" class="win">
-    <div class="titlebar"><h2>Experience</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+    <div class="titlebar"><h2><img class="emo" src="assets/emo/happy.svg" alt="" width="16" height="16">Experience</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
     <ul class="plain">
       <li><strong>Software Engineer</strong> · <a href="https://www.f-secure.com/">F-Secure</a>
@@ -221,7 +254,7 @@
   </section>
 
   <section id="speech" class="win">
-    <div class="titlebar"><h2>Speech &amp; machine learning</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+    <div class="titlebar"><h2><img class="emo" src="assets/emo/wink.svg" alt="" width="16" height="16">Speech &amp; machine learning</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
     <div class="grid pairs">
       <article class="card">
@@ -256,7 +289,7 @@
   </section>
 
   <section id="projects" class="win">
-    <div class="titlebar"><h2>Things I've built</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+    <div class="titlebar"><h2><img class="emo" src="assets/emo/blush.svg" alt="" width="16" height="16">Things I've built</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
     <p style="margin:0 0 16px;color:var(--muted);font-size:0.88rem">BSc, University of Bucharest · all built before October 2022, without AI</p>
     <div class="grid">
@@ -308,7 +341,7 @@
   </section>
 
   <section id="other" class="win">
-    <div class="titlebar"><h2>Other projects</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+    <div class="titlebar"><h2><img class="emo" src="assets/emo/happy.svg" alt="" width="16" height="16">Other projects</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
     <div class="grid pairs">
       <article class="card">
@@ -357,7 +390,7 @@
   </section>
 
   <section id="open-source" class="win">
-    <div class="titlebar"><h2>Open source</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
+    <div class="titlebar"><h2><img class="emo" src="assets/emo/blush.svg" alt="" width="16" height="16">Open source</h2><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
     <ul class="plain">
       <li><a href="https://github.com/commitglobal/votemonitor">VoteMonitor</a> · Commit Global
@@ -369,12 +402,40 @@
     </ul>
     </div>
   </section>
+  </div>
 
   <footer>
     BSc Computers and Information Technology, University of Bucharest · MSc, Aalto University ·
-    <a href="https://github.com/dianapaula19">github.com/dianapaula19</a>
+    <a href="https://github.com/dianapaula19">GitHub</a> ·
+    <a href="https://www.linkedin.com/in/diana-bacircea">LinkedIn</a>
   </footer>
 </main>
+<script>
+  // Tabs: show one section at a time; without JS every section stays visible.
+  (function () {
+    document.documentElement.classList.add('js');
+    const tabs = [...document.querySelectorAll('.tabs a')];
+    const ids = tabs.map((a) => a.hash.slice(1));
+    function show(id) {
+      if (!ids.includes(id)) id = ids[0];
+      ids.forEach((i) => document.getElementById(i).classList.toggle('active', i === id));
+      tabs.forEach((a) => {
+        const on = a.hash.slice(1) === id;
+        a.classList.toggle('active', on);
+        if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+      });
+    }
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a || !ids.includes(a.hash.slice(1))) return;
+      e.preventDefault();
+      show(a.hash.slice(1));
+      history.replaceState(null, '', a.hash);
+    });
+    window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+    show(location.hash.slice(1));
+  })();
+</script>
 <script>
   // Sparkle trail behind the cursor; skipped for touch screens and reduced motion.
   if (matchMedia('(pointer: fine)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
