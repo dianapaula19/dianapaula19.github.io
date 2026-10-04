@@ -369,6 +369,19 @@
       Object.keys(localStorage).forEach(function (k) { if (k.indexOf('persist:') === 0) localStorage.removeItem(k); });
     } catch (e) {}
   };
+  /* A few links (e.g. "create a new account", "forgot your password") are plain
+     <a href="/register"> links, which on a static host would load a page that
+     does not exist. Route them through the app's router instead, the way the
+     original server sent every path to the app. */
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="/"]') : null;
+    if (!a || a.target === '_blank' || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var href = a.getAttribute('href');
+    if (href.indexOf('/demos/') === 0) return;
+    e.preventDefault();
+    history.pushState(null, '', href);
+    window.dispatchEvent(new PopStateEvent('popstate', { state: null }));
+  }, true);
   /* The app's router expects to live at "/", so present the demo there. */
   if (location.pathname !== '/') history.replaceState(null, '', '/login');
 })();
