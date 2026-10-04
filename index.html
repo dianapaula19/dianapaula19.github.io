@@ -165,6 +165,26 @@
     .tabs { display: none; }
     .js .tabs { display: flex; }
 
+    /* surprise gallery */
+    .surprise { display: none; font: inherit; font-size: 0.88rem; cursor: url("assets/cursor-hand.svg") 9 1, pointer;
+      background: linear-gradient(180deg, #fffbe8 0%, #ffe9a8 100%); border-color: #e2b84a; color: #6b4a0a; }
+    .surprise:hover { background: linear-gradient(180deg, #fff6d6 0%, #ffdf80 100%); }
+    .js .surprise { display: inline-block; }
+    .gallery { margin: auto; padding: 0; width: min(760px, calc(100vw - 32px)); max-height: calc(100vh - 48px); color: var(--text); }
+    .gallery::backdrop { background: rgba(253, 196, 222, 0.6); backdrop-filter: blur(2px); }
+    .gallery[open] { animation: pop .18s ease-out; }
+    @keyframes pop { from { transform: scale(.94); opacity: 0; } }
+    .gallery .win-body { overflow: auto; max-height: calc(100vh - 48px - 28px); }
+    .gallery-intro { margin: 0 0 14px; color: var(--muted); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+    .gallery-grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border: 1px solid var(--soft-line); border-radius: 4px; box-shadow: 2px 2px 0 rgba(193, 63, 120, 0.15); }
+    .ctrls .close {
+      width: 17px; height: 15px; padding: 0; display: grid; place-items: center; font: bold 11px/1 Tahoma, Verdana, sans-serif; color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.85); border-radius: 3px; background: #e0447f; cursor: url("assets/cursor-hand.svg") 9 1, pointer;
+    }
+    .ctrls .close:hover { background: #c22f68; }
+    @media (prefers-reduced-motion: reduce) { .gallery[open] { animation: none; } }
+
     footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 8px; }
     @media (max-width: 760px) {
       .profile > .win-body { grid-template-columns: 1fr; }
@@ -217,6 +237,7 @@
     <div class="links">
       <a class="primary" href="https://github.com/dianapaula19" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="https://www.linkedin.com/in/diana-bacircea" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <button type="button" class="btn surprise" id="surprise-open">Click here for a surprise ♡</button>
     </div>
     <p class="note"><span class="noai">Built without AI</span>
       marks projects from before October 2022, written before AI coding assistants.</p>
@@ -414,6 +435,17 @@
     <a href="https://github.com/dianapaula19" target="_blank" rel="noopener noreferrer">GitHub</a> ·
     <a href="https://www.linkedin.com/in/diana-bacircea" target="_blank" rel="noopener noreferrer">LinkedIn</a>
   </footer>
+  <dialog class="win gallery" id="surprise" aria-labelledby="surprise-title">
+    <div class="titlebar"><span id="surprise-title"><img class="emo" src="assets/emo/sleepy.svg" alt="" width="16" height="16">fluffy_gallery</span>
+      <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" id="surprise-close" aria-label="Close">×</button></span>
+    </div>
+    <div class="win-body">
+      <p class="gallery-intro">Meet Fluffy: 16 years old, chief napper and my favourite colleague ♡</p>
+      <div class="gallery-grid">
+        <img src="assets/fluffy.jpg" alt="Fluffy asleep with the tip of her tongue out" loading="lazy">
+      </div>
+    </div>
+  </dialog>
 </main>
 <script>
   // Tabs: show one section at a time; without JS every section stays visible.
@@ -439,6 +471,17 @@
     });
     window.addEventListener('hashchange', () => show(location.hash.slice(1)));
     show(location.hash.slice(1));
+  })();
+</script>
+<script>
+  // Surprise gallery: native <dialog>, closes on the × button, Esc or a click outside.
+  (function () {
+    const dlg = document.getElementById('surprise');
+    const open = document.getElementById('surprise-open');
+    if (!dlg || !open || typeof dlg.showModal !== 'function') return;
+    open.addEventListener('click', () => dlg.showModal());
+    document.getElementById('surprise-close').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
   })();
 </script>
 <script>
