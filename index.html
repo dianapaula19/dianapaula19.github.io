@@ -125,6 +125,8 @@
       width: 100%; border: 1px solid var(--soft-line); border-radius: 3px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top;
     }
     .card .video { background: #000; }
+    .yr { align-self: flex-start; background: #fff; color: var(--text); border: 1px solid var(--line); border-radius: 3px; padding: 0 7px; font-size: 0.72rem; font-weight: bold; }
+    .sub { margin: 0 0 16px; color: var(--muted); font-size: 0.88rem; }
     .card h3 { margin: 0; font-size: 1rem; }
     .card h3 a { text-decoration: none; }
     .card h3 a:hover { text-decoration: underline; }
@@ -269,7 +271,6 @@
       <a href="#experience">Experience</a>
       <a href="#speech">Speech &amp; ML</a>
       <a href="#projects">Projects</a>
-      <a href="#other">More projects</a>
       <a href="#open-source">Open source</a>
     </nav>
   <section id="experience" class="panel">
@@ -326,72 +327,32 @@
   </section>
 
   <section id="projects" class="panel">
-    <h2 class="section-title">Things I've built</h2>
+    <h2 class="section-title">Projects</h2>
     <div class="win-body">
-    <p style="margin:0 0 16px;color:var(--muted);font-size:0.88rem">BSc, University of Bucharest · all built before October 2022, without AI</p>
+    <p class="sub">Newest first.</p>
     <div class="grid">
-      <article class="card feature">
-        <div class="two">
-          <img src="assets/graduation.png"
-               alt="A student ranking elective courses by drag and drop" loading="lazy">
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div class="badges"><span class="pill">BSc thesis, University of Bucharest</span><span class="noai">Built without AI</span></div>
-            <h3><a href="https://github.com/dianapaula19/graduation-project" target="_blank" rel="noopener noreferrer">Elective course selection</a></h3>
-            <p>Students rank their electives by drag and drop; when the session closes, seats are assigned
-              by grade. Admins import accounts from Excel and manage courses; teachers email their students.
-              Romanian and English interface. Supervised by Prof. Ioana Leuștean, then dean of the
-              Faculty of Mathematics and Computer Science.</p>
-            <div class="tags"><span>Django REST</span><span>React</span><span>TypeScript</span><span>Redux</span><span>Channels</span></div>
-          </div>
-        </div>
-      </article>
-      <article class="card">
-        <img src="assets/wally.png"
-             alt="Where's Wally game screen" loading="lazy">
-        <h3><a href="https://github.com/dianapaula19/wheres-wally-game" target="_blank" rel="noopener noreferrer">Where's Wally? Social Distancing Edition</a></h3>
-        <p>Find Wally in a masked crowd before your three lives run out.</p>
-        <div class="tags"><span>C++</span><span>OpenGL</span></div>
-      </article>
-      <article class="card">
-        <img src="assets/tv-series.png"
-             alt="TV series tracker series list" loading="lazy">
-        <h3><a href="https://github.com/dianapaula19/tv-series-tracking-web-app" target="_blank" rel="noopener noreferrer">TV series tracker</a></h3>
-        <p>Track episodes, see monthly watch time, befriend users and challenge them to binge-watch.</p>
-        <div class="tags"><span>Java</span><span>Spring Boot</span><span>Vaadin</span></div>
-      </article>
-      <article class="card">
-        <img src="assets/claw-machine.jpg"
-             alt="The claw machine: frame, wiring and Lego enclosure" loading="lazy">
-        <h3><a href="https://github.com/dianapaula19/introduction-to-robotics-course" target="_blank" rel="noopener noreferrer">Candy claw machine</a></h3>
-        <p>An arcade claw machine from Lego and plexiglass, steered wirelessly over nRF24L01 radios.</p>
-        <div class="tags"><span>Arduino</span><span>C++</span></div>
-      </article>
-      <article class="card">
-        <img src="assets/airport.png"
-             alt="Employees table and navigation menu in the airport management app" loading="lazy">
-        <h3><a href="https://github.com/dianapaula19/airport-management-system" target="_blank" rel="noopener noreferrer">Airport management system</a></h3>
-        <p>Flights, airports, airlines, staff and shops, with reports on departures and employees.</p>
-        <div class="tags"><span>Java</span><span>Spring Boot</span><span>MySQL</span></div>
-      </article>
-    </div>
-    </div>
-  </section>
-
-  <section id="other" class="panel">
-    <h2 class="section-title">Other projects</h2>
-    <div class="win-body">
-    <div class="grid pairs">
       <article class="card">
         <img src="assets/ulisses.png" style="object-position:center" alt="Simulated drift of plastic pellets after the Toconao spill off Galicia">
-        <span class="pill">MSc, Aalto University</span>
+        <div class="badges"><span class="yr">2025</span><span class="pill">MSc, Aalto University</span></div>
         <h3><a href="https://github.com/dianapaula19/ulisses-2025-project" target="_blank" rel="noopener noreferrer">Operation N.U.R.D.L.E.S</a></h3>
         <p>ULISSES 2025. Where do plastic pellets go after a spill at sea? Drift simulations with OpenDrift and Copernicus
           currents, winds and sea ice, presented on a <a href="https://dianapaula19.github.io/ulisses-2025-project/" target="_blank" rel="noopener noreferrer">mission-style website</a>.</p>
         <div class="tags"><span>Python</span><span>OpenDrift</span><span>React</span><span>Tailwind</span></div>
       </article>
       <article class="card">
+        <img src="assets/graduation.png"
+               alt="A student ranking elective courses by drag and drop" loading="lazy">
+        <div class="badges"><span class="yr">2022</span><span class="pill">BSc thesis, University of Bucharest</span><span class="noai">Built without AI</span></div>
+        <h3><a href="https://github.com/dianapaula19/graduation-project" target="_blank" rel="noopener noreferrer">Elective course selection</a></h3>
+        <p>Students rank their electives by drag and drop; when the session closes, seats are assigned
+              by grade. Admins import accounts from Excel and manage courses; teachers email their students.
+              Romanian and English interface. Supervised by Prof. Ioana Leuștean, then dean of the
+              Faculty of Mathematics and Computer Science.</p>
+        <div class="tags"><span>Django REST</span><span>React</span><span>TypeScript</span><span>Redux</span><span>Channels</span></div>
+      </article>
+      <article class="card">
         <img src="assets/music-dna.jpg" alt="musicDNA start screen with the Connect with your Spotify account button" loading="lazy">
-        <div class="badges"><span class="pill">ING {Dev}School</span><span class="noai">Built without AI</span></div>
+        <div class="badges"><span class="yr">2022</span><span class="pill">ING {Dev}School</span><span class="noai">Built without AI</span></div>
         <h3>musicDNA</h3>
         <p>Connect your Spotify account and see your saved music broken down by genre; pick a genre to see your
           own tracks in it next to recommended ones.
@@ -399,27 +360,59 @@
         <div class="tags"><span>React</span><span>TypeScript</span><span>Redux</span><span>Tailwind</span></div>
       </article>
       <article class="card">
+        <img src="assets/airport.png"
+             alt="Employees table and navigation menu in the airport management app" loading="lazy">
+        <div class="badges"><span class="yr">2021</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
+        <h3><a href="https://github.com/dianapaula19/airport-management-system" target="_blank" rel="noopener noreferrer">Airport management system</a></h3>
+        <p>Flights, airports, airlines, staff and shops, with reports on departures and employees.</p>
+        <div class="tags"><span>Java</span><span>Spring Boot</span><span>MySQL</span></div>
+      </article>
+      <article class="card">
+        <img src="assets/wally.png"
+             alt="Where's Wally game screen" loading="lazy">
+        <div class="badges"><span class="yr">2021</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
+        <h3><a href="https://github.com/dianapaula19/wheres-wally-game" target="_blank" rel="noopener noreferrer">Where's Wally? Social Distancing Edition</a></h3>
+        <p>Find Wally in a masked crowd before your three lives run out.</p>
+        <div class="tags"><span>C++</span><span>OpenGL</span></div>
+      </article>
+      <article class="card">
         <img src="assets/anfmr.jpg" alt="Home page of anfmr.ro with the association's logo and About us section" loading="lazy">
-        <div class="badges"><span class="pill">Volunteer project</span><span class="noai">Built without AI</span></div>
+        <div class="badges"><span class="yr">2020</span><span class="pill">Volunteer project</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://anfmr.ro/" target="_blank" rel="noopener noreferrer">anfmr.ro</a></h3>
         <p>The website of the Rural Women National Association, a Romanian nonprofit I volunteered with
           for four years: projects, activities, gallery and news. I built it and designed the logo. 2020.</p>
         <div class="tags"><span>Gatsby</span><span>React</span><span>GraphQL</span></div>
       </article>
       <article class="card">
-        <iframe class="video" src="https://www.youtube-nocookie.com/embed/MsB5dNeHQ3c" title="Famous Women app demo" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <div class="badges"><span class="pill">Udacity scholarship</span><span class="noai">Built without AI</span></div>
-        <h3><a href="https://github.com/dianapaula19/famous-women-app" target="_blank" rel="noopener noreferrer">Famous Women</a></h3>
-        <p>An Android app about remarkable women from each team member's country, built by a team of
-          Google Developer Challenge scholars and <a href="https://medium.com/udacity/women-who-learn-women-who-collaborate-women-who-code-d3d2fbb0dcf0" target="_blank" rel="noopener noreferrer">featured on the Udacity blog</a>.</p>
-        <div class="tags"><span>Java</span><span>Android</span></div>
+        <img src="assets/tv-series.png"
+             alt="TV series tracker series list" loading="lazy">
+        <div class="badges"><span class="yr">2020</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
+        <h3><a href="https://github.com/dianapaula19/tv-series-tracking-web-app" target="_blank" rel="noopener noreferrer">TV series tracker</a></h3>
+        <p>Track episodes, see monthly watch time, befriend users and challenge them to binge-watch.</p>
+        <div class="tags"><span>Java</span><span>Spring Boot</span><span>Vaadin</span></div>
+      </article>
+      <article class="card">
+        <img src="assets/claw-machine.jpg"
+             alt="The claw machine: frame, wiring and Lego enclosure" loading="lazy">
+        <div class="badges"><span class="yr">2020</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
+        <h3><a href="https://github.com/dianapaula19/introduction-to-robotics-course" target="_blank" rel="noopener noreferrer">Candy claw machine</a></h3>
+        <p>An arcade claw machine from Lego and plexiglass, steered wirelessly over nRF24L01 radios.</p>
+        <div class="tags"><span>Arduino</span><span>C++</span></div>
       </article>
       <article class="card">
         <img src="assets/zara.png" alt="Zara Fashion start screen and two quiz questions" loading="lazy">
-        <div class="badges"><span class="pill">High school</span><span class="noai">Built without AI</span></div>
+        <div class="badges"><span class="yr">2018</span><span class="pill">High school</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://github.com/dianapaula19/zara-fashion-app" target="_blank" rel="noopener noreferrer">Zara Fashion: what's your style?</a></h3>
         <p>An Android style quiz: pick six clothing items and find out whether your style is bohemian,
           casual, chic or vintage. Made for my high-school Computer Science certification exam.</p>
+        <div class="tags"><span>Java</span><span>Android</span></div>
+      </article>
+      <article class="card">
+        <iframe class="video" src="https://www.youtube-nocookie.com/embed/MsB5dNeHQ3c" title="Famous Women app demo" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="badges"><span class="yr">2018</span><span class="pill">Udacity scholarship</span><span class="noai">Built without AI</span></div>
+        <h3><a href="https://github.com/dianapaula19/famous-women-app" target="_blank" rel="noopener noreferrer">Famous Women</a></h3>
+        <p>An Android app about remarkable women from each team member's country, built by a team of
+          Google Developer Challenge scholars and <a href="https://medium.com/udacity/women-who-learn-women-who-collaborate-women-who-code-d3d2fbb0dcf0" target="_blank" rel="noopener noreferrer">featured on the Udacity blog</a>.</p>
         <div class="tags"><span>Java</span><span>Android</span></div>
       </article>
     </div>
