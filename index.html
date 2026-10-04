@@ -20,7 +20,6 @@
       --tag: #fff0f6;
       --on-accent: #ffffff;
       --shadow: 0 6px 20px rgba(214, 102, 150, 0.14);
-      --bow: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 48'><path d='M32 22C22 7 5 6 5 18s17 12 27 6z' fill='%23f9b4d0' stroke='%23d9648f' stroke-width='2'/><path d='M32 22C42 7 59 6 59 18s-17 12-27 6z' fill='%23f9b4d0' stroke='%23d9648f' stroke-width='2'/><path d='M29 25l-8 20 6-3 4 5 2-21z' fill='%23f7a3c4' stroke='%23d9648f' stroke-width='2' stroke-linejoin='round'/><path d='M35 25l8 20-6-3-4 5-2-21z' fill='%23f7a3c4' stroke='%23d9648f' stroke-width='2' stroke-linejoin='round'/><ellipse cx='32' cy='23' rx='5.5' ry='6.5' fill='%23f48fb6' stroke='%23d9648f' stroke-width='2'/></svg>");
       --heart: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 30'><path d='M16 28S2 19.5 2 10.5C2 5.8 5.6 2 10 2c2.7 0 4.8 1.4 6 3.4C17.2 3.4 19.3 2 22 2c4.4 0 8 3.8 8 8.5C30 19.5 16 28 16 28z' fill='%23fbc4da' stroke='%23e07aa3' stroke-width='1.5'/><ellipse cx='10' cy='9' rx='3' ry='2' fill='%23fff' opacity='.7' transform='rotate(-30 10 9)'/></svg>");
     }
     :root { color-scheme: light; }
@@ -63,10 +62,6 @@
       width: 132px; height: 132px; border-radius: 50%; object-fit: cover; display: block;
       border: 5px solid var(--surface); box-shadow: 0 0 0 2px var(--line), var(--shadow);
     }
-    .avatar::after {
-      content: ""; position: absolute; top: -14px; right: -18px; width: 62px; height: 46px;
-      background: var(--bow) no-repeat center / contain; transform: rotate(18deg);
-    }
     h1 {
       font-family: "Playfair Display", Georgia, serif;
       font-size: clamp(2.4rem, 6vw, 3.6rem);
@@ -100,11 +95,6 @@
       font-size: 1.6rem;
       color: var(--text);
       margin: 0 0 20px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    h2::before {
-      content: ""; width: 38px; height: 28px; flex: none;
-      background: var(--bow) no-repeat center / contain;
     }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
     .card {
@@ -129,6 +119,7 @@
       object-fit: cover;
       object-position: top;
     }
+    .card .video { width: 100%; aspect-ratio: 16 / 10; border: 1px solid var(--line); border-radius: 12px; background: #000; }
     .card h3 { margin: 0; font-size: 1.05rem; }
     .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
@@ -152,10 +143,6 @@
     .quote {
       position: relative; margin: 56px 0 0; padding: 28px 32px 24px; background: var(--surface);
       border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow);
-    }
-    .quote::after {
-      content: ""; position: absolute; top: -20px; right: 22px; width: 64px; height: 48px;
-      background: var(--bow) no-repeat center / contain; transform: rotate(-14deg);
     }
     .quote .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
     .quote blockquote {
@@ -267,7 +254,8 @@
             <h3><a href="https://github.com/dianapaula19/graduation-project">Elective course selection</a></h3>
             <p>Students rank their electives by drag and drop; when the session closes, seats are assigned
               by grade. Admins import accounts from Excel and manage courses; teachers email their students.
-              Romanian and English interface.</p>
+              Romanian and English interface. Supervised by Prof. Ioana Leuștean, then dean of the
+              Faculty of Mathematics and Computer Science.</p>
             <div class="tags"><span>Django REST</span><span>React</span><span>TypeScript</span><span>Redux</span><span>Channels</span></div>
           </div>
         </div>
@@ -324,19 +312,27 @@
         <div class="tags"><span>React</span><span>TypeScript</span><span>Redux</span><span>Tailwind</span></div>
       </article>
       <article class="card">
+        <img src="assets/anfmr.jpg" alt="Home page of anfmr.ro with the association's logo and About us section" loading="lazy">
+        <div class="badges"><span class="pill">Volunteer project</span><span class="noai">Built without AI</span></div>
+        <h3><a href="https://anfmr.ro/">anfmr.ro</a></h3>
+        <p>The website of the Rural Women National Association, a Romanian nonprofit I volunteered with
+          for four years: projects, activities, gallery and news. I built it and designed the logo. 2020.</p>
+        <div class="tags"><span>Gatsby</span><span>React</span><span>GraphQL</span></div>
+      </article>
+      <article class="card">
+        <iframe class="video" src="https://www.youtube-nocookie.com/embed/MsB5dNeHQ3c" title="Famous Women app demo" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="badges"><span class="pill">Udacity scholarship</span><span class="noai">Built without AI</span></div>
+        <h3><a href="https://github.com/dianapaula19/famous-women-app">Famous Women</a></h3>
+        <p>An Android app about remarkable women from each team member's country, built by a team of
+          Google Developer Challenge scholars and <a href="https://medium.com/udacity/women-who-learn-women-who-collaborate-women-who-code-d3d2fbb0dcf0">featured on the Udacity blog</a>.</p>
+        <div class="tags"><span>Java</span><span>Android</span></div>
+      </article>
+      <article class="card">
         <img src="assets/zara.png" alt="Zara Fashion start screen and two quiz questions" loading="lazy">
         <div class="badges"><span class="pill">High school</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://github.com/dianapaula19/zara-fashion-app">Zara Fashion: what's your style?</a></h3>
         <p>An Android style quiz: pick six clothing items and find out whether your style is bohemian,
           casual, chic or vintage. Made for my high-school Computer Science certification exam.</p>
-        <div class="tags"><span>Java</span><span>Android</span></div>
-      </article>
-      <article class="card">
-        <img src="assets/famous-women.png" alt="Famous Women app: list of women with portraits and country flags" loading="lazy">
-        <div class="badges"><span class="pill">Udacity scholarship</span><span class="noai">Built without AI</span></div>
-        <h3><a href="https://github.com/dianapaula19/famous-women-app">Famous Women</a></h3>
-        <p>An Android app about remarkable women from each team member's country, built by a team of
-          Google Developer Challenge scholars and <a href="https://medium.com/udacity/women-who-learn-women-who-collaborate-women-who-code-d3d2fbb0dcf0">featured on the Udacity blog</a>.</p>
         <div class="tags"><span>Java</span><span>Android</span></div>
       </article>
     </div>
