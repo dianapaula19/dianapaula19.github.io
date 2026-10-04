@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Diana Băcîrcea</title>
   <meta name="description" content="Software engineer in Helsinki working on speech technology and full-stack projects.">
+  <script>
+    // Accessibility preferences: saved choices win, otherwise follow the system.
+    (function () {
+      var saved = {};
+      try { saved = JSON.parse(localStorage.getItem('a11y-prefs') || '{}'); } catch (e) {}
+      var sys = {
+        contrast: window.matchMedia('(prefers-contrast: more)').matches || window.matchMedia('(forced-colors: active)').matches,
+        motion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      };
+      var prefs = {
+        contrast: 'contrast' in saved ? saved.contrast : sys.contrast,
+        large: !!saved.large,
+        motion: 'motion' in saved ? saved.motion : sys.motion,
+        cursor: !!saved.cursor
+      };
+      window.__a11y = prefs;
+      var c = document.documentElement.classList;
+      Object.keys(prefs).forEach(function (k) { if (prefs[k]) c.add('a11y-' + k); });
+    })();
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -231,6 +251,65 @@
     .game-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--soft-line); }
     .game-bar .btn { font: inherit; flex: none; cursor: url("assets/cursor-hand.svg") 9 1, pointer; }
 
+    /* ---- accessibility ---------------------------------------------------- */
+    :focus-visible { outline: 3px solid #6e1640; outline-offset: 2px; }
+    .skip { position: absolute; left: 12px; top: -60px; z-index: 10000; padding: 8px 14px; background: #6e1640; color: #fff; border-radius: 4px; font-weight: bold; }
+    .skip:focus { top: 12px; color: #fff; }
+    .a11y-btn {
+      position: fixed; right: 16px; bottom: 16px; z-index: 50; display: inline-flex; align-items: center; gap: 7px;
+      padding: 7px 12px; font: bold 0.82rem Tahoma, Verdana, sans-serif; color: #3d2230; cursor: pointer;
+      background: linear-gradient(180deg, #fff 0%, #ffe6f2 60%, #ffd3e8 100%); border: 1px solid var(--line); border-radius: 999px;
+      box-shadow: 2px 2px 0 rgba(193, 63, 120, 0.25);
+    }
+    .a11y-btn svg { width: 18px; height: 18px; }
+    .a11y-win { margin: auto; padding: 0; width: min(440px, calc(100vw - 24px)); color: var(--text); }
+    .a11y-win::backdrop { background: rgba(253, 196, 222, 0.5); }
+    .a11y-win .win-body { display: grid; gap: 12px; }
+    .a11y-opt { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: start; cursor: pointer; }
+    .a11y-opt input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: #8a1650; grid-row: span 2; cursor: pointer; }
+    .a11y-opt b { font-size: 0.95rem; }
+    .a11y-opt span { font-size: 0.82rem; color: var(--muted); }
+    .a11y-win .note { margin: 0; font-size: 0.78rem; }
+    .a11y-win .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .a11y-win .row .btn { font: inherit; font-size: 0.85rem; cursor: pointer; }
+
+    /* larger text */
+    html.a11y-large { font-size: 118%; }
+    html.a11y-large body { font-size: 18px; }
+
+    /* standard cursor */
+    html.a11y-cursor, html.a11y-cursor * { cursor: auto !important; }
+    html.a11y-cursor a, html.a11y-cursor button, html.a11y-cursor label, html.a11y-cursor [role="tab"] { cursor: pointer !important; }
+
+    /* reduce motion */
+    html.a11y-motion *, html.a11y-motion *::before, html.a11y-motion *::after { animation: none !important; transition: none !important; }
+    html.a11y-motion .card:hover, html.a11y-motion .pin:hover { transform: none; }
+    html.a11y-motion .pin { --r: 0deg; }
+    html.a11y-motion .noai::before { background-image: url("assets/ym/16.png"); }
+    html.a11y-motion ul.plain li::before { background-image: url("assets/ym/1.png"); }
+
+    /* high contrast (WCAG AA or better throughout) */
+    html.a11y-contrast {
+      --bg: #ffffff; --dot: transparent; --win: #ffffff; --text: #1a0010; --muted: #3d2230;
+      --line: #6e1640; --soft-line: #6e1640; --accent: #8a1650; --accent-soft: #ffffff; --tag: #ffffff;
+      --link: #8a1650; --link-hover: #000000; --title-a: #8a1650; --title-b: #6e1640;
+    }
+    html.a11y-contrast body { background-image: none; }
+    html.a11y-contrast a { text-decoration: underline; text-decoration-color: currentColor; }
+    html.a11y-contrast .titlebar, html.a11y-contrast .js .tabs a.active, html.a11y-contrast .tabs a.active { text-shadow: none; }
+    html.a11y-contrast .tabs a { color: #1a0010; background: #ffffff; border-color: #6e1640; }
+    html.a11y-contrast .js .tabs a.active { background: #6e1640; color: #ffffff; }
+    html.a11y-contrast .card, html.a11y-contrast ul.plain, html.a11y-contrast .panel, html.a11y-contrast .win { box-shadow: none; }
+    html.a11y-contrast .noai { background: #fff8d6; color: #3d2800; border-color: #3d2800; }
+    html.a11y-contrast .ai, html.a11y-contrast .pill, html.a11y-contrast .yr, html.a11y-contrast .tags span { color: #1a0010; border-color: #6e1640; background: #ffffff; }
+    html.a11y-contrast .tags a.tag { background: #ffffff; color: #8a1650; border-color: #6e1640; }
+    html.a11y-contrast .links a, html.a11y-contrast .a11y-btn, html.a11y-contrast .btn { background: #ffffff; color: #1a0010; border-color: #6e1640; text-decoration: none; }
+    html.a11y-contrast .links a:hover, html.a11y-contrast .tags a.tag:hover, html.a11y-contrast .play:hover { background: #6e1640; color: #ffffff; }
+    html.a11y-contrast .surprise { background: #fff8d6; color: #3d2800; border-color: #3d2800; }
+    html.a11y-contrast .surprise:hover { background: #3d2800; color: #ffffff; }
+    html.a11y-contrast :focus-visible { outline: 4px solid #000000; outline-offset: 2px; }
+    html.a11y-contrast .ctrls .close { background: #b0003a; }
+
     footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 8px; }
     @media (max-width: 760px) {
       .two { grid-template-columns: 1fr; }
@@ -249,7 +328,8 @@
   </style>
 </head>
 <body>
-<main>
+<a class="skip" href="#main-content">Skip to content</a>
+<main id="main-content" tabindex="-1">
   <header class="win profile">
     <div class="titlebar"><span><img class="emo" src="assets/ym/1.gif" alt="" width="18" height="18">Diana Băcîrcea</span><span class="ctrls" aria-hidden="true"><i>_</i><i>□</i><i>×</i></span></div>
     <div class="win-body">
@@ -497,19 +577,43 @@
     </div>
   </dialog>
 </main>
+  <button type="button" class="a11y-btn" id="a11y-open" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6.3" r="1.7" fill="currentColor"/><path d="M6.5 9.2l5.5 1.2 5.5-1.2M12 10.4v4.2m0 0l-2.6 4.6M12 14.6l2.6 4.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Accessibility</button>
+  <dialog class="win a11y-win" id="a11y" aria-labelledby="a11y-title">
+    <div class="titlebar"><span id="a11y-title"><svg width="16" height="16" style="margin-right:6px;vertical-align:-3px" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6.3" r="1.7" fill="currentColor"/><path d="M6.5 9.2l5.5 1.2 5.5-1.2M12 10.4v4.2m0 0l-2.6 4.6M12 14.6l2.6 4.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Accessibility settings</span>
+      <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" data-close aria-label="Close">×</button></span>
+    </div>
+    <div class="win-body">
+      <label class="a11y-opt"><input type="checkbox" data-pref="contrast"><b>High contrast</b><span>Darker text, links and title bars that meet WCAG AA contrast.</span></label>
+      <label class="a11y-opt"><input type="checkbox" data-pref="large"><b>Larger text</b><span>Increases the text size across the page.</span></label>
+      <label class="a11y-opt"><input type="checkbox" data-pref="motion"><b>Reduce motion</b><span>Turns off the sparkle trail, animations and animated emoticons.</span></label>
+      <label class="a11y-opt"><input type="checkbox" data-pref="cursor"><b>Standard cursor</b><span>Uses your system cursor instead of the pixel one.</span></label>
+      <p class="note">Saved in this browser. High contrast and reduced motion also follow your system settings.</p>
+      <div class="row"><button type="button" class="btn" id="a11y-reset">Reset to default</button><button type="button" class="btn" data-close>Done</button></div>
+    </div>
+  </dialog>
+
 <script>
   // Tabs: show one section at a time; without JS every section stays visible.
   (function () {
     document.documentElement.classList.add('js');
-    const tabs = [...document.querySelectorAll('.tabs a')];
+    const nav = document.querySelector('.tabs');
+    const tabs = [...nav.querySelectorAll('a')];
     const ids = tabs.map((a) => a.hash.slice(1));
-    function show(id) {
+    nav.setAttribute('role', 'tablist');
+    tabs.forEach((a) => {
+      const id = a.hash.slice(1), panel = document.getElementById(id);
+      a.id = 'tab-' + id; a.setAttribute('role', 'tab'); a.setAttribute('aria-controls', id);
+      panel.setAttribute('role', 'tabpanel'); panel.setAttribute('aria-labelledby', a.id); panel.setAttribute('tabindex', '0');
+    });
+    function show(id, focus) {
       if (!ids.includes(id)) id = ids[0];
       ids.forEach((i) => document.getElementById(i).classList.toggle('active', i === id));
       tabs.forEach((a) => {
         const on = a.hash.slice(1) === id;
         a.classList.toggle('active', on);
-        if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+        a.setAttribute('aria-selected', on ? 'true' : 'false');
+        a.tabIndex = on ? 0 : -1;
+        if (on && focus) a.focus();
       });
     }
     document.addEventListener('click', (e) => {
@@ -518,6 +622,19 @@
       e.preventDefault();
       show(a.hash.slice(1));
       history.replaceState(null, '', a.hash);
+    });
+    nav.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      let j = null;
+      if (e.key === 'ArrowRight') j = (i + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') j = 0;
+      else if (e.key === 'End') j = tabs.length - 1;
+      if (j === null) return;
+      e.preventDefault();
+      show(ids[j], true);
+      history.replaceState(null, '', '#' + ids[j]);
     });
     window.addEventListener('hashchange', () => show(location.hash.slice(1)));
     show(location.hash.slice(1));
@@ -579,6 +696,7 @@
     const colors = ['#f48fb6', '#ffb6d3', '#e9679d', '#ffd1e3', '#f7c873'];
     let last = 0;
     document.addEventListener('pointermove', (e) => {
+      if (document.documentElement.classList.contains('a11y-motion')) return;
       const now = performance.now();
       if (now - last < 30) return;
       last = now;
@@ -595,6 +713,38 @@
       s.addEventListener('animationend', () => s.remove());
     });
   }
+</script>
+<script>
+  // Accessibility settings window.
+  (function () {
+    const dlg = document.getElementById('a11y');
+    const root = document.documentElement;
+    const boxes = [...dlg.querySelectorAll('input[data-pref]')];
+    function emoticons(still) {
+      document.querySelectorAll('img.emo').forEach((img) => {
+        img.src = still ? img.src.replace(/\.gif$/, '.png') : img.src.replace(/\.png$/, '.gif');
+      });
+    }
+    function apply() {
+      boxes.forEach((b) => { root.classList.toggle('a11y-' + b.dataset.pref, window.__a11y[b.dataset.pref]); b.checked = !!window.__a11y[b.dataset.pref]; });
+      emoticons(window.__a11y.motion);
+    }
+    function save() {
+      const saved = {}; boxes.forEach((b) => { saved[b.dataset.pref] = b.checked; });
+      try { localStorage.setItem('a11y-prefs', JSON.stringify(saved)); } catch (e) {}
+    }
+    boxes.forEach((b) => b.addEventListener('change', () => { window.__a11y[b.dataset.pref] = b.checked; save(); apply(); }));
+    document.getElementById('a11y-reset').addEventListener('click', () => {
+      try { localStorage.removeItem('a11y-prefs'); } catch (e) {}
+      window.__a11y = { contrast: matchMedia('(prefers-contrast: more)').matches || matchMedia('(forced-colors: active)').matches,
+                        large: false, motion: matchMedia('(prefers-reduced-motion: reduce)').matches, cursor: false };
+      apply();
+    });
+    document.getElementById('a11y-open').addEventListener('click', () => dlg.showModal());
+    dlg.querySelectorAll('[data-close]').forEach((b) => b.addEventListener('click', () => dlg.close()));
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    apply();
+  })();
 </script>
 </body>
 </html>
