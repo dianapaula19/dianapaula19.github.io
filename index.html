@@ -135,6 +135,8 @@
     .card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: auto; padding-top: 6px; }
     .tags span { background: var(--tag); border: 1px solid var(--soft-line); border-radius: 3px; padding: 0 7px; font-size: 0.74rem; color: var(--muted); }
+    .tags a.tag { background: var(--accent-soft); border: 1px solid var(--line); border-radius: 3px; padding: 0 7px; font-size: 0.74rem; color: var(--accent); text-decoration: none; font-weight: bold; transition: background .15s ease, color .15s ease; }
+    .tags a.tag:hover, .tags a.tag:focus-visible { background: var(--title-b); border-color: #c4568a; color: #fff; }
     .pill { align-self: flex-start; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--soft-line); border-radius: 3px; padding: 0 7px; font-size: 0.72rem; font-weight: bold; }
     .badges { display: flex; flex-wrap: wrap; gap: 5px; }
     .noai { background: #fffbe8; color: #7a5a1a; border: 1px solid #ecd27a; border-radius: 3px; padding: 0 7px; font-size: 0.72rem; font-weight: bold; white-space: nowrap; }
@@ -374,16 +376,16 @@
              alt="Employees table and navigation menu in the airport management app" loading="lazy">
         <div class="badges"><span class="yr">2020</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://github.com/dianapaula19/airport-management-system" target="_blank" rel="noopener noreferrer">Airport management system</a></h3>
-        <p>Flights, airports, airlines, staff and shops, with reports on departures and employees.</p>
-        <div class="tags"><span>Java</span><span>Spring Boot</span><span>MySQL</span></div>
+        <p>Flights, airports, airlines, staff and shops, with reports on departures and employees. The interface is built with <a href="https://vaadin.com/" target="_blank" rel="noopener noreferrer">Vaadin</a>, a framework for writing web UIs entirely in Java.</p>
+        <div class="tags"><span>Java</span><span>Spring Boot</span><a class="tag" href="https://vaadin.com/" target="_blank" rel="noopener noreferrer" title="What is Vaadin?">Vaadin ↗</a><span>MySQL</span></div>
       </article>
       <article class="card">
         <img src="assets/anfmr.jpg" alt="Home page of anfmr.ro with the association's logo and About us section" loading="lazy">
         <div class="badges"><span class="yr">2020</span><span class="pill">Volunteer project</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://anfmr.ro/" target="_blank" rel="noopener noreferrer">anfmr.ro</a></h3>
         <p>The website of the Rural Women National Association, a Romanian nonprofit I volunteered with
-          for four years: projects, activities, gallery and news. I built it and designed the logo. 2020.</p>
-        <div class="tags"><span>Gatsby</span><span>React</span><span>GraphQL</span></div>
+          for four years: projects, activities, gallery and news. I built it with <a href="https://www.gatsbyjs.com/" target="_blank" rel="noopener noreferrer">Gatsby</a>, a React-based framework for fast static websites, and designed the logo.</p>
+        <div class="tags"><a class="tag" href="https://www.gatsbyjs.com/" target="_blank" rel="noopener noreferrer" title="What is Gatsby?">Gatsby ↗</a><span>React</span><span>GraphQL</span></div>
       </article>
       <article class="card">
         <img src="assets/tv-series.png"
@@ -391,7 +393,7 @@
         <div class="badges"><span class="yr">2020</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://github.com/dianapaula19/tv-series-tracking-web-app" target="_blank" rel="noopener noreferrer">TV series tracker</a></h3>
         <p>Track episodes, see monthly watch time, befriend users and challenge them to binge-watch.</p>
-        <div class="tags"><span>Java</span><span>Spring Boot</span><span>Vaadin</span></div>
+        <div class="tags"><span>Java</span><span>Spring Boot</span><a class="tag" href="https://vaadin.com/" target="_blank" rel="noopener noreferrer" title="What is Vaadin?">Vaadin ↗</a></div>
       </article>
       <article class="card">
         <img src="assets/claw-machine.jpg"
