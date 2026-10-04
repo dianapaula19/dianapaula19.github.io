@@ -149,6 +149,21 @@
     ul.plain li { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 14px 18px; box-shadow: var(--shadow); }
     ul.plain li span { display: block; color: var(--muted); font-size: 0.92rem; }
     footer { margin-top: 72px; color: var(--muted); font-size: 0.9rem; border-top: 1px dashed var(--line); padding-top: 20px; }
+    .quote {
+      position: relative; margin: 56px 0 0; padding: 28px 32px 24px; background: var(--surface);
+      border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow);
+    }
+    .quote::after {
+      content: ""; position: absolute; top: -20px; right: 22px; width: 64px; height: 48px;
+      background: var(--bow) no-repeat center / contain; transform: rotate(-14deg);
+    }
+    .quote .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+    .quote blockquote {
+      margin: 0; font-family: "Playfair Display", Georgia, serif; font-style: italic;
+      font-size: clamp(1.15rem, 2.6vw, 1.45rem); line-height: 1.45; color: var(--text);
+    }
+    .quote figcaption { margin-top: 12px; color: var(--muted); font-weight: 600; }
+    .quote figcaption::before { content: "♡ "; color: var(--accent); }
     .sparkle {
       position: fixed; z-index: 9999; pointer-events: none; line-height: 1;
       transform: translate(-50%, -50%); animation: sparkle .9s ease-out forwards;
@@ -183,6 +198,12 @@
     <p style="margin:16px 0 0;color:var(--muted);font-size:0.92rem"><span class="noai">Built without AI</span>
       marks projects from before October 2022, written before AI coding assistants.</p>
   </header>
+
+  <figure class="quote">
+    <p class="label">Current favourite quote</p>
+    <blockquote>We are the daughters of the feminists who said, “You can be anything,” and we heard, “You have to be everything.”</blockquote>
+    <figcaption>Courtney Martin</figcaption>
+  </figure>
 
   <section id="experience">
     <h2>Experience</h2>
