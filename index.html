@@ -100,6 +100,18 @@
     h1 em { color: var(--accent); font-style: normal; }
     .lead { font-size: 1.02rem; color: var(--muted); margin: 0; }
     .lead strong { color: var(--text); }
+    .langs { margin: 10px 0 0; font-size: 0.9rem; color: var(--muted); }
+    .langs > span { white-space: nowrap; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .tip { position: relative; border-bottom: 1px dashed var(--line); cursor: help; }
+    html:not(.a11y-cursor) .tip { cursor: url("assets/cursor-hand.svg") 9 1, help; }
+    .tip-text {
+      position: absolute; left: 50%; bottom: calc(100% + 9px); transform: translate(-50%, 4px); z-index: 20;
+      padding: 5px 10px; border-radius: 8px; background: #6e1640; color: #fff; font-weight: bold; font-size: 0.85rem; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity .15s ease, transform .15s ease; box-shadow: 2px 3px 0 rgba(110, 22, 64, 0.25);
+    }
+    .tip-text::after { content: ""; position: absolute; left: 50%; top: 100%; margin-left: -6px; border: 6px solid transparent; border-top-color: #6e1640; }
+    .tip:hover .tip-text, .tip:focus .tip-text { opacity: 1; transform: translate(-50%, 0); }
     .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
     .links a, .btn {
       padding: 5px 14px; border: 1px solid var(--line); border-radius: 4px; color: var(--text); text-decoration: none;
@@ -161,7 +173,7 @@
     .tags span { background: var(--tag); border: 1px solid var(--soft-line); border-radius: 3px; padding: 0 7px; font-size: 0.74rem; color: var(--muted); }
     .tags a.tag { background: var(--accent-soft); border: 1px solid var(--line); border-radius: 3px; padding: 0 7px; font-size: 0.74rem; color: var(--accent); text-decoration: none; font-weight: bold; transition: background .15s ease, color .15s ease; }
     .tags a.tag:hover, .tags a.tag:focus-visible { background: var(--title-b); border-color: #c4568a; color: #fff; }
-    .pill { align-self: flex-start; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--soft-line); border-radius: 3px; padding: 0 7px; font-size: 0.72rem; font-weight: bold; }
+    .pill { align-self: flex-start; background: var(--accent-soft); color: #b33669; border: 1px solid var(--soft-line); border-radius: 3px; padding: 0 7px; font-size: 0.72rem; font-weight: bold; }
     .badges { display: flex; flex-wrap: wrap; gap: 5px; }
     .noai { background: #fffbe8; color: #7a5a1a; border: 1px solid #ecd27a; border-radius: 3px; padding: 0 7px; font-size: 0.72rem; font-weight: bold; white-space: nowrap; }
     .noai::before { content: ""; display: inline-block; width: 15px; height: 15px; margin-right: 4px; vertical-align: -3px; background: url("assets/ym/16.gif") no-repeat center / contain; }
@@ -361,6 +373,7 @@
       <strong>Software engineer at F-Secure</strong> in Helsinki, with a master's from
       <strong>Aalto University</strong> (<a href="https://aaltodoc.aalto.fi/items/f7a211df-0bbe-4d45-93e8-dcb0a0ef06da" target="_blank" rel="noopener noreferrer">read my thesis</a>) and a soft spot for speech technology. I like building things end to end, from signal processing to the web app on top.
     </p>
+    <p class="langs"><span class="sr-only">Languages: </span><span><span aria-hidden="true">🇷🇴</span> Romanian (native)</span> · <span><span aria-hidden="true">🇬🇧</span> English (C1)</span> · <span><span aria-hidden="true">🇫🇷</span> French (B1)</span> · <span class="tip" tabindex="0"><span aria-hidden="true">🇫🇮</span> Finnish (learning)<span class="tip-text" role="tooltip" lang="fi">Minä olen Diana! 👋</span></span></p>
     <div class="links">
       <a href="https://github.com/dianapaula19" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       <a href="https://www.linkedin.com/in/diana-bacircea" target="_blank" rel="noopener noreferrer"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 4.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
