@@ -248,6 +248,9 @@
     #elective { width: min(1180px, calc(100vw - 24px)); }
     .game-bar b { color: var(--text); }
     .game-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+    #video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #111; }
+    .watch { align-self: flex-start; margin-top: 4px; font: inherit; font-size: 0.82rem; cursor: url("assets/cursor-hand.svg") 9 1, pointer; }
+    .watch:hover, .watch:focus-visible { background: linear-gradient(180deg, #f98cbf 0%, var(--title-b) 100%); border-color: #c4568a; color: #fff; }
     .game-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--soft-line); }
     .game-bar .btn { font: inherit; flex: none; cursor: url("assets/cursor-hand.svg") 9 1, pointer; }
 
@@ -473,6 +476,7 @@
         <div class="badges"><span class="yr">2020</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://github.com/dianapaula19/airport-management-system" target="_blank" rel="noopener noreferrer">Airport management system</a></h3>
         <p>Flights, airports, airlines, staff and shops, with reports on departures and employees. The interface is built with <a href="https://vaadin.com/" target="_blank" rel="noopener noreferrer">Vaadin</a>, a framework for writing web UIs entirely in Java.</p>
+        <button type="button" class="btn watch" data-video="assets/videos/airport-management.mp4" data-poster="assets/videos/airport-management.jpg" data-title="airport_management.mp4">▶ Watch a demo</button>
         <div class="tags"><span>Java</span><span>Spring Boot</span><a class="tag" href="https://vaadin.com/" target="_blank" rel="noopener noreferrer" title="What is Vaadin?">Vaadin ↗</a><span>MySQL</span></div>
       </article>
       <article class="card">
@@ -489,6 +493,7 @@
         <div class="badges"><span class="yr">2020</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://github.com/dianapaula19/tv-series-tracking-web-app" target="_blank" rel="noopener noreferrer">TV series tracker</a></h3>
         <p>Track episodes, see monthly watch time, befriend users and challenge them to binge-watch.</p>
+        <button type="button" class="btn watch" data-video="assets/videos/tv-series-tracker.mp4" data-poster="assets/videos/tv-series-tracker.jpg" data-title="tv_series_tracker.mp4">▶ Watch a demo</button>
         <div class="tags"><span>Java</span><span>Spring Boot</span><a class="tag" href="https://vaadin.com/" target="_blank" rel="noopener noreferrer" title="What is Vaadin?">Vaadin ↗</a></div>
       </article>
       <article class="card">
@@ -575,6 +580,13 @@
         This is the original 2022 frontend; the Django backend is replaced by fictional demo data in your browser.</span>
       <button type="button" class="btn" data-restart>↻ Reset demo</button>
     </div>
+  </dialog>
+  <dialog class="win game" id="video" aria-labelledby="video-title">
+    <div class="titlebar"><span><img class="emo" src="assets/ym/1.gif" alt="" width="18" height="18"><span id="video-title">demo.mp4</span></span>
+      <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" data-close aria-label="Close">×</button></span>
+    </div>
+    <video controls playsinline preload="none"></video>
+    <div class="game-bar"><span>A recorded walkthrough of the original app running locally with sample data. It needs a Java server, so it can't run live on this static site.</span></div>
   </dialog>
 </main>
   <button type="button" class="a11y-btn" id="a11y-open" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="6.3" r="1.7" fill="currentColor"/><path d="M6.5 9.2l5.5 1.2 5.5-1.2M12 10.4v4.2m0 0l-2.6 4.6M12 14.6l2.6 4.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>Accessibility</button>
@@ -687,6 +699,23 @@
       dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
       dlg.addEventListener('close', () => { frame.src = 'about:blank'; });
     });
+  })();
+</script>
+<script>
+  // Demo videos: load only when opened, stop on close.
+  (function () {
+    const dlg = document.getElementById('video');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const v = dlg.querySelector('video');
+    document.querySelectorAll('.watch').forEach((b) => b.addEventListener('click', () => {
+      document.getElementById('video-title').textContent = b.dataset.title;
+      v.poster = b.dataset.poster; v.src = b.dataset.video;
+      dlg.showModal();
+      if (!document.documentElement.classList.contains('a11y-motion')) v.play().catch(() => {});
+    }));
+    dlg.querySelector('[data-close]').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => { v.pause(); v.removeAttribute('src'); v.load(); });
   })();
 </script>
 <script>
