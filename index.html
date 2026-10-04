@@ -217,6 +217,17 @@
     .ctrls .close:hover { background: #c22f68; }
     @media (prefers-reduced-motion: reduce) { .gallery[open] { animation: none; } }
 
+    /* in-browser game */
+    .play { align-self: flex-start; margin-top: 4px; font: inherit; font-size: 0.82rem; cursor: url("assets/cursor-hand.svg") 9 1, pointer; display: none; }
+    @media (hover: hover) and (pointer: fine) and (min-width: 760px) { .js .play { display: inline-block; } }
+    .play:hover, .play:focus-visible { background: linear-gradient(180deg, #f98cbf 0%, var(--title-b) 100%); border-color: #c4568a; color: #fff; }
+    .game { margin: auto; padding: 0; width: min(960px, calc(100vw - 24px)); color: var(--text); }
+    .game::backdrop { background: rgba(253, 196, 222, 0.6); backdrop-filter: blur(2px); }
+    .game-frame { aspect-ratio: 3 / 2; background: #8fd3d9; }
+    .game-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .game-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--soft-line); }
+    .game-bar .btn { font: inherit; flex: none; cursor: url("assets/cursor-hand.svg") 9 1, pointer; }
+
     footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 8px; }
     @media (max-width: 760px) {
       .two { grid-template-columns: 1fr; }
@@ -367,8 +378,10 @@
              alt="Where's Wally game screen" loading="lazy">
         <div class="badges"><span class="yr">2021</span><span class="pill">BSc, University of Bucharest</span><span class="noai">Built without AI</span></div>
         <h3><a href="https://github.com/dianapaula19/wheres-wally-game" target="_blank" rel="noopener noreferrer">Where's Wally? Social Distancing Edition</a></h3>
-        <p>Find Wally in a masked crowd before your three lives run out.</p>
-        <div class="tags"><span>C++</span><span>OpenGL</span></div>
+        <p>Peak 2020 energy: everyone's masked up, standing a safe distance apart, and you still have to spot Wally
+          in the crowd before your three lives run out.</p>
+        <button type="button" class="btn play" data-game="games/wally/index.html">▶ Play in browser</button>
+        <div class="tags"><span>C++</span><span>OpenGL</span><span>WebAssembly</span></div>
       </article>
       <article class="card">
         <img src="assets/airport.png"
@@ -456,6 +469,16 @@
       </div>
     </div>
   </dialog>
+  <dialog class="win game" id="game" aria-labelledby="game-title">
+    <div class="titlebar"><span id="game-title"><img class="emo" src="assets/ym/1.gif" alt="" width="18" height="18">wheres_wally.exe</span>
+      <span class="ctrls"><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" class="close" id="game-close" aria-label="Close">×</button></span>
+    </div>
+    <div class="game-frame"><iframe title="Where's Wally? Social Distancing Edition" loading="lazy"></iframe></div>
+    <div class="game-bar">
+      <span>Click Wally to find him. A wrong click costs a heart. The original game is compiled to WebAssembly from my 2021 C++ code, unchanged.</span>
+      <button type="button" class="btn" id="game-restart">↻ Restart</button>
+    </div>
+  </dialog>
 </main>
 <script>
   // Tabs: show one section at a time; without JS every section stays visible.
@@ -507,6 +530,22 @@
     }
     update();
     setInterval(update, 60000);
+  })();
+</script>
+<script>
+  // Game window: the iframe only loads when opened, and is unloaded on close.
+  (function () {
+    const dlg = document.getElementById('game');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const frame = dlg.querySelector('iframe');
+    let src = '';
+    document.querySelectorAll('.play').forEach((b) => b.addEventListener('click', () => {
+      src = b.dataset.game; frame.src = src; dlg.showModal();
+    }));
+    document.getElementById('game-restart').addEventListener('click', () => { frame.src = 'about:blank'; setTimeout(() => { frame.src = src; }, 0); });
+    document.getElementById('game-close').addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => { frame.src = 'about:blank'; });
   })();
 </script>
 <script>

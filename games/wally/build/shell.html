@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where's Wally? Social Distancing Edition</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #8fd3d9; overflow: hidden; }
+  .stage { position: relative; width: min(100vw, 150vh); aspect-ratio: 3 / 2; margin: 0 auto; top: 50%; transform: translateY(-50%); }
+  .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  #loading { position: absolute; inset: 0; display: grid; place-items: center; font: bold 18px Tahoma, Verdana, sans-serif; color: #3d2230; }
+</style>
+</head>
+<body>
+<div class="stage">
+  <canvas id="canvas" width="1200" height="800" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+  <div id="loading">Loading…</div>
+</div>
+<script>
+  var Module = {
+    canvas: document.getElementById('canvas'),
+    onRuntimeInitialized: function () { document.getElementById('loading').remove(); }
+  };
+</script>
+{{{ SCRIPT }}}
+</body>
+</html>
