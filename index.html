@@ -25,6 +25,9 @@
       Object.keys(prefs).forEach(function (k) { if (prefs[k]) c.add('a11y-' + k); });
     })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600,100&display=swap" rel="stylesheet">
   <style>
     :root {
       color-scheme: light;
@@ -93,12 +96,8 @@
       width: 112px; height: 112px; object-fit: cover; display: block; border-radius: 6px;
       border: 1px solid var(--line); box-shadow: 2px 2px 0 rgba(193, 63, 120, 0.2);
     }
-    h1 { font: bold clamp(2rem, 5vw, 2.8rem)/1.1 "Trebuchet MS", Tahoma, Verdana, sans-serif; margin: 0; }
+    h1 { font: 600 clamp(2.2rem, 5.4vw, 3.1rem)/1.05 Fraunces, Georgia, "Times New Roman", serif; font-variation-settings: "SOFT" 100; letter-spacing: -0.01em; margin: 0; }
     h1 em { color: var(--accent); font-style: normal; }
-    h1::after {
-      content: ""; display: inline-block; width: 0.62em; height: 0.58em; margin-left: 0.18em;
-      background: var(--heart) no-repeat center / contain; vertical-align: 0.05em;
-    }
     .lead { font-size: 1.02rem; color: var(--muted); margin: 0; }
     .lead strong { color: var(--text); }
     .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
@@ -355,7 +354,7 @@
     <div class="hero">
       <div class="avatar"><img src="assets/profile.jpg" alt="Diana Băcîrcea" width="132" height="132"></div>
       <div>
-        <h1>Hi, I'm <em>Diana</em>.</h1>
+        <h1>Hi, I’m <em>Diana</em>.</h1>
       </div>
     </div>
     <p class="lead">
